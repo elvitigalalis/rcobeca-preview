@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="description" content="Preview the new rcobeca.org: browse the whole site, or try the editor.">
+<title>RCOBECA website preview</title>
+<style>
+	:root { --blue: #1A3B85; --navy: #0F2252; --gold: #C8A04A; --ink: #15181E; --slate: #565C68; --cream: #F6F1E7; --hairline: #D9D3C7; }
+	* { box-sizing: border-box; }
+	body { margin: 0; font: 17px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--ink); background: #fff; }
+	header { background: var(--navy); color: #fff; padding: 56px 16px 48px; }
+	main, header > div { max-width: 760px; margin: 0 auto; }
+	header p { margin: 0; color: #E3C77E; font-family: Georgia, serif; font-style: italic; }
+	h1 { font-family: Georgia, serif; font-weight: 500; font-size: clamp(32px, 6vw, 48px); line-height: 1.15; margin: 8px 0 24px; }
+	.button { display: inline-block; background: var(--gold); color: var(--ink); font-weight: 600; text-decoration: none; padding: 14px 24px; border-radius: 2px; }
+	.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+	.button.secondary { background: transparent; color: #fff; box-shadow: inset 0 0 0 2px var(--gold); }
+	.button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+	main { padding: 40px 16px 64px; }
+	h2 { font-family: Georgia, serif; font-weight: 500; font-size: 24px; margin: 32px 0 8px; border-top: 1px solid var(--hairline); padding-top: 24px; }
+	a { color: var(--blue); }
+	code { background: var(--cream); padding: 1px 6px; }
+	.small { color: var(--slate); font-size: 15px; }
+</style>
+</head>
+<body>
+<header><div>
+	<p>RCOBECA · Royal College Old Boys’ East Coast Association</p>
+	<h1>Preview the new rcobeca.org</h1>
+	<div class="actions">
+		<a class="button" href="site/">Browse the site</a>
+		<a class="button secondary" href="https://playground.wordpress.net/?blueprint-url=https://elvitigalalis.github.io/rcobeca-preview/blueprint.json">Try the editor</a>
+	</div>
+</div></header>
+<main>
+	<h2>Browse the site</h2>
+	<p>Opens straight away, on a computer or a phone. It is a copy of every page of the new site, with the content and photos imported from the old one. Click around as you would on the real thing. Search, the sign-up forms and the Ball’s Table Lookup need the full preview below; everything else works.</p>
+	<h2>Try the editor</h2>
+	<p>The full preview builds the whole site inside your browser so you can edit it the way RCOBECA’s volunteers will. It downloads about 80 MB and imports every Project, Event, Committee and photo, which takes one to three minutes on a laptop with a fast connection and longer on a phone. Keep the tab open; the home page appears when it is done.</p>
+	<p>You are logged in as the administrator: follow “Try the editor” in the bar at the top of the preview, or “Edit Page” in the black toolbar. (If you are ever asked, the login is <code>admin</code> with the password <code>password</code>.) Edit a page, add a Project or an Event, and see it on the site. Nothing you click, type or change reaches rcobeca.org or anyone else, and it all vanishes when you close the tab.</p>
+	<h2>What is left out</h2>
+	<ul>
+		<li>The Souvenir Journal PDFs, to keep the download small, so the Ball pages have no journal links here. Photos are reduced to 1280 pixels.</li>
+		<li>The membership, donation and newsletter forms show placeholders until RCOBECA creates them in Zeffy. The Table Lookup on the style guide answers for made-up guests only.</li>
+	</ul>
+	<p class="small">Rebuilt automatically from the site’s code.</p>
+</main>
+</body>
+</html>

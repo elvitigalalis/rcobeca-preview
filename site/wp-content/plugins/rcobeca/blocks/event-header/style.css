@@ -1,0 +1,60 @@
+/* Event title band: cream, with breadcrumb, italic kicker, serif title and date line. */
+.rcobeca-event-header {
+	box-sizing: border-box;
+	padding: var(--wp--preset--spacing--60, 4rem) max(1rem, var(--wp--preset--spacing--40, 2rem)) var(--wp--preset--spacing--50, 3rem);
+	background: var(--wp--preset--color--cream, #f6f1e7);
+	color: var(--wp--preset--color--contrast, #15181e);
+}
+
+.rcobeca-event-header__inner {
+	max-width: var(--wp--style--global--wide-size, 1104px);
+	margin-inline: auto;
+}
+
+.rcobeca-event-header__inner > * {
+	margin: 0;
+}
+
+.rcobeca-event-header__crumbs {
+	margin-bottom: var(--wp--preset--spacing--30, 1.5rem);
+	font-size: var(--wp--preset--font-size--small, 0.875rem);
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
+.rcobeca-event-header__crumbs a {
+	color: var(--wp--preset--color--primary, #1a3b85);
+	text-decoration: none;
+}
+
+.rcobeca-event-header__crumbs a::before {
+	content: "\2190";
+	margin-right: 0.4em;
+}
+
+.rcobeca-event-header__crumbs a:hover {
+	text-decoration: underline;
+}
+
+.rcobeca-event-header__kicker {
+	font-family: var(--wp--preset--font-family--serif, Georgia, serif);
+	font-size: var(--wp--preset--font-size--large, 1.25rem);
+	font-style: italic;
+	color: var(--wp--preset--color--accent-deep, #7f5f18);
+}
+
+.rcobeca-event-header__title {
+	margin-top: 0.35rem !important;
+	max-width: 22ch;
+	font-size: var(--wp--preset--font-size--xxx-large, 4.25rem);
+	line-height: 1.04;
+	letter-spacing: -0.02em;
+}
+
+.rcobeca-event-header__when {
+	margin-top: var(--wp--preset--spacing--30, 1.5rem) !important;
+	font-family: var(--wp--preset--font-family--serif, Georgia, serif);
+	font-size: var(--wp--preset--font-size--large, 1.25rem);
+	color: var(--wp--preset--color--muted, #565c68);
+}

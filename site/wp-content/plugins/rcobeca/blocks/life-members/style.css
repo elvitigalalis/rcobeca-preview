@@ -1,0 +1,84 @@
+/* Life Members: a typographic honour roll (Whitney model), names in columns. */
+
+.rcobeca-life-members > * {
+	margin-block: 0;
+}
+
+.rcobeca-life-members__as-of {
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--accent-deep);
+}
+
+.rcobeca-life-members__group {
+	display: grid;
+	grid-template-columns: minmax(8rem, 1fr) 3fr;
+	gap: var(--wp--preset--spacing--20) var(--wp--preset--spacing--40);
+	padding-block: var(--wp--preset--spacing--40);
+	border-bottom: var(--wp--custom--hairline);
+}
+
+.rcobeca-life-members__as-of + .rcobeca-life-members__group {
+	margin-block-start: var(--wp--preset--spacing--30);
+	border-top: var(--wp--custom--hairline);
+}
+
+.rcobeca-life-members__year {
+	margin: 0;
+	font-size: var(--wp--preset--font-size--x-large);
+	font-weight: 500;
+	font-style: italic;
+}
+
+.rcobeca-life-members__names {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-family: var(--wp--preset--font-family--serif);
+	font-size: var(--wp--preset--font-size--large);
+	line-height: 1.5;
+}
+
+.rcobeca-life-members__names li {
+	padding-block: 0.15rem;
+}
+
+/* The date he joined, beside the name. */
+.rcobeca-life-members__since {
+	font-family: var(--wp--preset--font-family--sans);
+	font-size: var(--wp--preset--font-size--small);
+	color: var(--wp--preset--color--muted);
+	white-space: nowrap;
+}
+
+.rcobeca-life-members__dot {
+	padding-inline: 0.2rem;
+	color: var(--wp--preset--color--accent-deep);
+}
+
+.rcobeca-life-members__notes {
+	margin-block-start: var(--wp--preset--spacing--30) !important;
+	font-size: var(--wp--preset--font-size--small);
+	color: var(--wp--preset--color--muted);
+}
+
+.rcobeca-life-members__notes > * {
+	margin-block: 0.35rem 0;
+}
+
+@media (max-width: 599.98px) {
+	.rcobeca-life-members__group {
+		grid-template-columns: 1fr;
+	}
+}
+
+.rcobeca-life-members__hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}

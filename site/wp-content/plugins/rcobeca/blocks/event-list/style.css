@@ -1,0 +1,169 @@
+/* Events listing: type filter, Upcoming, then Past grouped by year. Hairline rows, no cards. */
+.rcobeca-event-list {
+	--rcobeca-hairline: 1px solid var(--wp--preset--color--hairline, #d9d3c7);
+}
+
+.rcobeca-event-list__filter ul {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.rcobeca-event-list__filter a {
+	display: inline-block;
+	padding: 0.45rem 0.9rem;
+	border: 1px solid var(--wp--preset--color--hairline, #d9d3c7);
+	border-radius: var(--wp--custom--radius, 2px);
+	font-size: 0.875rem;
+	font-weight: 600;
+	color: var(--wp--preset--color--contrast, #15181e);
+	text-decoration: none;
+}
+
+.rcobeca-event-list__filter a:hover {
+	border-color: var(--wp--preset--color--primary, #1a3b85);
+	color: var(--wp--preset--color--primary, #1a3b85);
+}
+
+.rcobeca-event-list__filter a[aria-current="page"] {
+	background: var(--wp--preset--color--primary, #1a3b85);
+	border-color: var(--wp--preset--color--primary, #1a3b85);
+	color: var(--wp--preset--color--base, #fff);
+}
+
+.rcobeca-event-list section {
+	margin-top: var(--wp--preset--spacing--50, 3rem);
+}
+
+.rcobeca-event-list__heading {
+	margin: 0;
+	padding-bottom: var(--wp--preset--spacing--20, 1rem);
+	border-bottom: 1px solid var(--wp--preset--color--contrast, #15181e);
+	font-size: var(--wp--preset--font-size--xx-large, 3rem);
+}
+
+.rcobeca-event-list__empty {
+	margin: 0;
+	padding-block: var(--wp--preset--spacing--40, 2rem);
+	font-family: var(--wp--preset--font-family--serif, Georgia, serif);
+	font-size: var(--wp--preset--font-size--large, 1.25rem);
+	color: var(--wp--preset--color--muted, #565c68);
+}
+
+.rcobeca-event-list__year {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	border-bottom: var(--rcobeca-hairline);
+}
+
+.rcobeca-event-list__year-heading {
+	margin: 0;
+	padding-top: var(--wp--preset--spacing--30, 1.5rem);
+	font-size: var(--wp--preset--font-size--x-large, 1.875rem);
+	color: var(--wp--preset--color--primary, #1a3b85);
+}
+
+@media (min-width: 782px) {
+	.rcobeca-event-list__year {
+		grid-template-columns: 9rem minmax(0, 1fr);
+		gap: var(--wp--preset--spacing--40, 2rem);
+	}
+
+	.rcobeca-event-list__year-heading {
+		position: sticky;
+		top: calc(var(--wp--custom--header-height, 84px) + var(--wp-admin--admin-bar--height, 0px) + 1rem);
+		align-self: start;
+	}
+}
+
+/* One Event */
+.rcobeca-event-row {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 0.25rem 1.5rem;
+	padding-block: var(--wp--preset--spacing--30, 1.5rem);
+}
+
+.rcobeca-event-list__rows > .rcobeca-event-row + .rcobeca-event-row,
+.rcobeca-event-list__upcoming > .rcobeca-event-row + .rcobeca-event-row {
+	border-top: var(--rcobeca-hairline, 1px solid #d9d3c7);
+}
+
+.rcobeca-event-list__upcoming > .rcobeca-event-row {
+	border-bottom: var(--rcobeca-hairline, 1px solid #d9d3c7);
+}
+
+.rcobeca-event-row > *,
+.rcobeca-event-row__text > * {
+	margin: 0;
+}
+
+.rcobeca-event-row__when {
+	font-size: var(--wp--preset--font-size--small, 0.875rem);
+	font-weight: 600;
+	color: var(--wp--preset--color--accent-deep, #7f5f18);
+}
+
+.rcobeca-event-row__kicker {
+	font-family: var(--wp--preset--font-family--serif, Georgia, serif);
+	font-style: italic;
+	color: var(--wp--preset--color--accent-deep, #7f5f18);
+}
+
+.rcobeca-event-row__title {
+	margin-block: 0.15rem 0.35rem !important;
+	font-size: 1.5rem;
+	line-height: 1.2;
+}
+
+.rcobeca-event-row__title a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.rcobeca-event-row__title a:hover {
+	color: var(--wp--preset--color--primary, #1a3b85);
+	text-decoration: underline;
+}
+
+.rcobeca-event-row__place {
+	font-size: 0.9375rem;
+	color: var(--wp--preset--color--muted, #565c68);
+}
+
+
+.rcobeca-event-row__image img {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+	transition: opacity var(--wp--custom--transition, 150ms ease-in-out);
+}
+
+.rcobeca-event-row__image:hover img {
+	opacity: 0.88;
+}
+
+@media (min-width: 600px) {
+	.rcobeca-event-row {
+		grid-template-columns: 8.5rem minmax(0, 1fr);
+	}
+
+	.rcobeca-event-row.has-image {
+		grid-template-columns: 8.5rem minmax(0, 1fr) 9rem;
+	}
+
+	.rcobeca-event-row__when {
+		padding-top: 0.3rem;
+	}
+}
+
+@media (max-width: 599.98px) {
+	.rcobeca-event-row__image {
+		display: none;
+	}
+}

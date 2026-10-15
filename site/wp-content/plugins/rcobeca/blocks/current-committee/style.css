@@ -1,0 +1,80 @@
+/* Current Committee: Exeter-style rows, one per Person, closed by hairlines. */
+
+.rcobeca-committee__group + .rcobeca-committee__group {
+	margin-block-start: var(--wp--preset--spacing--60);
+}
+
+.rcobeca-committee__year {
+	margin-block-end: 0.35rem;
+}
+
+.rcobeca-committee__heading {
+	margin-block: 0;
+	padding-block-end: var(--wp--preset--spacing--30);
+	border-bottom: var(--wp--custom--hairline);
+	font-size: var(--wp--preset--font-size--xx-large);
+}
+
+.rcobeca-committee__list {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+	column-gap: var(--wp--preset--spacing--40);
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+/* An odd number of people in two columns: the first (the President) takes a
+   row of his own, so the grid never ends on an empty cell. */
+.rcobeca-committee__person:first-child:nth-last-child(odd) {
+	grid-column: 1 / -1;
+}
+
+.rcobeca-committee__person {
+	display: flex;
+	justify-content: space-between;
+	gap: var(--wp--preset--spacing--30);
+	padding-block: var(--wp--preset--spacing--30);
+	border-bottom: var(--wp--custom--hairline);
+}
+
+.rcobeca-committee__text > * {
+	margin-block: 0;
+}
+
+.rcobeca-committee__name {
+	font-size: var(--wp--preset--font-size--x-large);
+	font-weight: 500;
+	line-height: 1.15;
+}
+
+.rcobeca-committee__name a {
+	color: inherit;
+}
+
+.rcobeca-committee__roles {
+	margin-block-start: 0.4rem !important;
+	font-family: var(--wp--preset--font-family--serif);
+	font-size: var(--wp--preset--font-size--large);
+	font-style: italic;
+	color: var(--wp--preset--color--muted);
+}
+
+.rcobeca-committee__email {
+	margin-block-start: 0.35rem !important;
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 600;
+}
+
+.rcobeca-committee__portrait {
+	flex: 0 0 auto;
+	width: 7.5rem;
+	margin: 0;
+}
+
+.rcobeca-committee__portrait img {
+	display: block;
+	width: 100%;
+	aspect-ratio: 3 / 4;
+	object-fit: cover;
+}

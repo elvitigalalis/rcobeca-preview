@@ -1,0 +1,2605 @@
+/*
+Theme Name: RCOBECA
+Description: Block theme for the Royal College Old Boys' East Coast Association. Presentation only; content structure lives in the RCOBECA plugin.
+Version: 0.2.1
+Requires at least: 6.6
+Requires PHP: 8.1
+License: GPL-2.0-or-later
+Text Domain: rcobeca
+*/
+
+/*
+ * Component styles. Tokens (colours, type, spacing, widths) live in theme.json
+ * and reach this file as --wp--preset--* and --wp--custom--* properties.
+ * Rules: square corners on images and cards, 2px-radius buttons, 1px
+ * hairlines, no shadows.
+ */
+
+/* ---------- Base ---------- */
+
+html {
+	scroll-padding-top: calc(var(--wp--custom--header-height) + 1rem);
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
+	font-optical-sizing: auto;
+}
+
+:where(p, li) {
+	text-wrap: pretty;
+}
+
+:where(h1, h2, h3, h4) {
+	text-wrap: balance;
+}
+
+img {
+	border-radius: 0;
+}
+
+a {
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.18em;
+	transition: color var(--wp--custom--transition), background-color var(--wp--custom--transition), border-color var(--wp--custom--transition);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		transition-duration: 0.01ms !important;
+		animation-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+.wp-block-quote cite,
+.wp-block-pullquote cite {
+	display: block;
+	margin-top: 0.75rem;
+	font-family: var(--wp--preset--font-family--sans);
+	font-size: var(--wp--preset--font-size--small);
+	font-style: normal;
+	font-weight: 600;
+	color: var(--wp--preset--color--muted);
+}
+
+/* ---------- Buttons ---------- */
+
+.wp-block-button__link {
+	white-space: nowrap;
+}
+
+/* Buttons stay at 16px on every screen (WordPress's fluid type would shrink them to about 14px on a phone). */
+.wp-element-button,
+.wp-block-button__link {
+	font-size: 1rem;
+}
+
+.wp-block-button.is-style-outline > .wp-block-button__link {
+	background: transparent;
+	color: var(--wp--preset--color--primary);
+	border: 1px solid currentColor;
+	padding: 0.75em 1.4em;
+}
+
+.wp-block-button.is-style-outline > .wp-block-button__link:hover {
+	background: var(--wp--preset--color--primary);
+	border-color: var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--base);
+}
+
+.wp-block-button.is-style-gold > .wp-block-button__link {
+	background: var(--wp--preset--color--accent);
+	border-color: var(--wp--preset--color--accent);
+	color: var(--wp--preset--color--primary-deep);
+}
+
+.wp-block-button.is-style-gold > .wp-block-button__link:hover {
+	background: #b48d3b;
+	border-color: #b48d3b;
+	color: var(--wp--preset--color--primary-deep);
+}
+
+/* ---------- Header ---------- */
+
+.wp-site-blocks > * + * {
+	margin-block-start: 0;
+}
+
+.wp-site-blocks > header.wp-block-template-part {
+	position: sticky;
+	top: var(--wp-admin--admin-bar--height, 0px);
+	z-index: 100;
+	margin-block-start: 0;
+}
+
+.rcobeca-header {
+	background: var(--wp--preset--color--base);
+	border-bottom: var(--wp--custom--hairline);
+}
+
+.rcobeca-header > .rcobeca-header__bar.alignwide {
+	max-width: 1360px;
+	min-height: var(--wp--custom--header-height);
+	gap: var(--wp--preset--spacing--30);
+}
+
+.rcobeca-header__actions {
+	gap: clamp(0.5rem, 0.2rem + 1vw, 1.75rem);
+}
+
+.rcobeca-brand {
+	margin: 0;
+	flex-shrink: 0;
+}
+
+.rcobeca-brand a {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	color: var(--wp--preset--color--primary-deep);
+	text-decoration: none;
+}
+
+.rcobeca-brand__crest {
+	display: block;
+	width: auto;
+	height: 52px;
+}
+
+.rcobeca-brand__name {
+	font-family: var(--wp--preset--font-family--serif);
+	font-size: 1.75rem;
+	font-weight: 500;
+	letter-spacing: 0.07em;
+	line-height: 1;
+}
+
+.rcobeca-brand__full {
+	white-space: nowrap;
+	padding-left: 0.85rem;
+	border-left: var(--wp--custom--hairline);
+	font-size: 0.6875rem;
+	font-weight: 600;
+	letter-spacing: 0.1em;
+	line-height: 1.45;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--muted);
+}
+
+.rcobeca-header__buttons {
+	gap: 0.5rem;
+}
+
+.rcobeca-header__buttons .wp-block-button > .wp-block-button__link {
+	padding: 0.6em 1.15em;
+	font-size: 0.9375rem;
+}
+
+/* Main menu, desktop */
+.rcobeca-menu .wp-block-navigation-item__content {
+	padding-block: 0.5rem;
+	color: var(--wp--preset--color--contrast);
+	text-decoration: none;
+}
+
+.rcobeca-menu .wp-block-navigation-item__content:hover,
+.rcobeca-menu .wp-block-navigation-submenu__toggle[aria-expanded="true"] {
+	color: var(--wp--preset--color--primary);
+}
+
+.rcobeca-menu .wp-block-navigation__container {
+	gap: clamp(1rem, 0.2rem + 1.4vw, 1.9rem);
+}
+
+.rcobeca-menu .wp-block-navigation__submenu-icon {
+	margin-left: 0.3em;
+	width: 0.7em;
+	height: 0.7em;
+}
+
+.rcobeca-menu .wp-block-navigation__submenu-container {
+	min-width: 15rem !important;
+	padding-block: 0.5rem;
+	border: var(--wp--custom--hairline) !important;
+	border-top: 2px solid var(--wp--preset--color--accent) !important;
+	background: var(--wp--preset--color--base) !important;
+	top: calc(100% + 0.6rem);
+}
+
+.rcobeca-menu .wp-block-navigation__submenu-container .wp-block-navigation-item__content {
+	color: var(--wp--preset--color--contrast);
+	display: block;
+	width: 100%;
+	padding: 0.55rem 1.25rem;
+	font-weight: 450;
+}
+
+.rcobeca-menu .wp-block-navigation__submenu-container .wp-block-navigation-item__content:hover {
+	background: var(--wp--preset--color--cream);
+	color: var(--wp--preset--color--primary-deep);
+}
+
+/* Search in the menu: a plain magnifier that opens a field (Exeter's rail search). */
+.rcobeca-menu .rcobeca-menu-search {
+	margin: 0;
+}
+
+.rcobeca-menu .rcobeca-menu-search .wp-block-search__inside-wrapper {
+	border: 0;
+	padding: 0;
+	gap: 0.25rem;
+}
+
+.rcobeca-menu .rcobeca-menu-search .wp-block-search__button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	margin: 0;
+	padding: 0;
+	border: 1px solid transparent;
+	border-radius: var(--wp--custom--radius);
+	background: transparent;
+	color: var(--wp--preset--color--contrast);
+}
+
+.rcobeca-menu .rcobeca-menu-search .wp-block-search__button:hover,
+.rcobeca-menu .rcobeca-menu-search .wp-block-search__button:focus-visible {
+	border-color: var(--wp--preset--color--hairline);
+	color: var(--wp--preset--color--primary);
+}
+
+.rcobeca-menu .rcobeca-menu-search .wp-block-search__button svg {
+	width: 24px;
+	height: 24px;
+	fill: currentColor;
+}
+
+.rcobeca-menu .rcobeca-menu-search .wp-block-search__input {
+	min-height: 44px;
+	padding: 0.4rem 0.75rem !important;
+	border: 1px solid var(--wp--preset--color--muted);
+	border-radius: var(--wp--custom--radius);
+	font: inherit;
+	font-size: 0.9375rem;
+}
+
+/* Desktop: the opened field lies over the menu instead of pushing it aside. */
+@media (min-width: 1100px) {
+	.rcobeca-menu .rcobeca-menu-search {
+		position: relative;
+	}
+
+	.rcobeca-menu .rcobeca-menu-search:not(.wp-block-search__searchfield-hidden) .wp-block-search__input {
+		position: absolute;
+		right: calc(100% + 0.25rem);
+		top: 0;
+		width: min(24rem, 40vw) !important;
+		background: var(--wp--preset--color--base) !important;
+	}
+}
+
+/* Overlay: the field and its button at the top of the sitemap, in the menu's column. */
+.rcobeca-menu .is-menu-open .rcobeca-menu-search {
+	order: -1;
+	width: 100%;
+	max-width: 32rem;
+	margin-inline: auto;
+}
+
+.rcobeca-menu .is-menu-open .rcobeca-menu-search .wp-block-search__input {
+	flex: 1;
+	width: auto !important;
+	border-color: rgb(255 255 255 / 0.5);
+	background: transparent;
+	color: var(--wp--preset--color--base);
+}
+
+.rcobeca-menu .is-menu-open .rcobeca-menu-search .wp-block-search__input::placeholder {
+	color: rgb(255 255 255 / 0.75);
+}
+
+.rcobeca-menu .is-menu-open .rcobeca-menu-search .wp-block-search__button {
+	border-color: rgb(255 255 255 / 0.5);
+	color: var(--wp--preset--color--base);
+}
+
+/* Main menu, overlay (phones and tablets): a full-screen navy sitemap. */
+.rcobeca-menu .wp-block-navigation__responsive-container-open,
+.rcobeca-menu .wp-block-navigation__responsive-container-close {
+	width: 44px;
+	height: 44px;
+	align-items: center;
+	justify-content: center;
+}
+
+.rcobeca-menu .wp-block-navigation__responsive-container-open svg {
+	width: 28px;
+	height: 28px;
+}
+
+.rcobeca-menu .wp-block-navigation__responsive-container.is-menu-open {
+	padding: var(--wp--preset--spacing--30) max(1rem, var(--wp--preset--spacing--40)) var(--wp--preset--spacing--50);
+}
+
+.rcobeca-menu .is-menu-open .wp-block-navigation__responsive-container-content {
+	padding-top: calc(var(--wp--custom--header-height) - 1rem);
+}
+
+.rcobeca-menu .is-menu-open .wp-block-navigation__container,
+.rcobeca-menu .is-menu-open .wp-block-navigation__responsive-container-content,
+.rcobeca-menu .is-menu-open .wp-block-navigation__submenu-container,
+.rcobeca-menu .is-menu-open .wp-block-navigation-item {
+	align-items: stretch !important;
+	width: 100%;
+}
+
+.rcobeca-menu .is-menu-open .wp-block-navigation__container {
+	gap: var(--wp--preset--spacing--40);
+	max-width: 32rem;
+	margin-inline: auto;
+}
+
+.rcobeca-menu .is-menu-open .wp-block-navigation-item__content {
+	color: var(--wp--preset--color--base);
+}
+
+.rcobeca-menu .is-menu-open .wp-block-navigation-submenu > .wp-block-navigation-item__content,
+.rcobeca-menu .is-menu-open .wp-block-navigation-submenu__toggle {
+	padding: 0 0 0.6rem;
+	margin-bottom: 0.4rem;
+	border-bottom: 1px solid rgb(255 255 255 / 0.2);
+	width: 100%;
+	text-align: left;
+	font-family: var(--wp--preset--font-family--serif);
+	font-style: italic;
+	font-size: 1.125rem;
+	color: var(--wp--custom--gold-on-dark);
+}
+
+.rcobeca-menu .is-menu-open .wp-block-navigation__submenu-container .wp-block-navigation-item__content,
+.rcobeca-menu .is-menu-open .wp-block-navigation__container > .wp-block-navigation-link > .wp-block-navigation-item__content {
+	padding: 0.35rem 0;
+	font-family: var(--wp--preset--font-family--serif);
+	font-size: 1.5rem;
+	font-weight: 400;
+	line-height: 1.25;
+}
+
+.rcobeca-menu .is-menu-open .wp-block-navigation__submenu-container {
+	border: 0 !important;
+	background: transparent !important;
+	padding: 0 !important;
+	gap: 0;
+}
+
+.rcobeca-menu .is-menu-open .wp-block-navigation__submenu-container .wp-block-navigation-item__content:hover,
+.rcobeca-menu .is-menu-open .wp-block-navigation-item__content:hover {
+	background: transparent;
+	color: var(--wp--custom--gold-on-dark);
+}
+
+/*
+ * Core switches to the overlay below 600px. Our menu plus the two buttons
+ * needs about 1100px, so keep the overlay up to there.
+ */
+@media (min-width: 600px) and (max-width: 1099.98px) {
+	.rcobeca-menu .wp-block-navigation__responsive-container-open:not(.always-shown) {
+		display: flex;
+	}
+
+	.rcobeca-menu .wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) {
+		display: none;
+	}
+}
+
+/* With the menu collapsed, the menu button sits at the far right. */
+@media (max-width: 1099.98px) {
+	.rcobeca-header__buttons {
+		order: -1;
+	}
+}
+
+@media (min-width: 1100px) and (max-width: 1239.98px) {
+	.rcobeca-brand__full {
+		display: none;
+	}
+}
+
+@media (max-width: 599.98px) {
+	:root {
+		--wp--custom--header-height: 64px;
+	}
+
+	.rcobeca-brand a {
+		gap: 0.5rem;
+	}
+
+	.rcobeca-brand__crest {
+		height: 40px;
+	}
+
+	.rcobeca-brand__name {
+		font-size: 1.3125rem;
+		letter-spacing: 0.04em;
+	}
+
+	.rcobeca-brand__full {
+		display: none;
+	}
+
+	.rcobeca-header__actions {
+		gap: 0.25rem;
+	}
+
+	.rcobeca-header__buttons {
+		gap: 0.375rem;
+	}
+
+	.rcobeca-header__buttons .wp-block-button > .wp-block-button__link {
+		padding: 0.5em 0.7em;
+		font-size: 0.875rem;
+	}
+}
+
+/* ---------- Footer ---------- */
+
+.wp-site-blocks > footer.wp-block-template-part {
+	margin-block-start: 0;
+}
+
+.rcobeca-footer {
+	font-size: 0.9375rem;
+}
+
+.rcobeca-footer a:where(:not(.wp-element-button)) {
+	color: inherit;
+	text-decoration-color: rgb(255 255 255 / 0.35);
+}
+
+.rcobeca-footer a:where(:not(.wp-element-button)):hover {
+	color: var(--wp--custom--gold-on-dark);
+	text-decoration-color: currentColor;
+}
+
+.rcobeca-newsletter {
+	padding-bottom: var(--wp--preset--spacing--50);
+	border-bottom: 1px solid rgb(255 255 255 / 0.18);
+	gap: var(--wp--preset--spacing--30);
+}
+
+/* One sign-up per page: where the page itself ends with the newsletter band (home, Join), the footer leaves its slot out. */
+body:has(main .rcobeca-newsletter-band) .rcobeca-footer .rcobeca-newsletter {
+	display: none;
+}
+
+.rcobeca-newsletter__intro > * {
+	margin: 0;
+}
+
+.rcobeca-newsletter__heading {
+	margin-bottom: 0.35rem !important;
+	font-size: var(--wp--preset--font-size--x-large);
+}
+
+.rcobeca-footer .rcobeca-newsletter__intro p {
+	color: rgb(255 255 255 / 0.8);
+}
+
+/* The newsletter sign-up button (plugin block) and its one-line note. */
+.rcobeca-newsletter-signup > * {
+	margin: 0;
+}
+
+.rcobeca-newsletter-signup__note {
+	margin-block-start: 0.6rem !important;
+	max-width: 26rem;
+	font-size: 0.8125rem;
+	color: var(--wp--preset--color--muted);
+}
+
+.rcobeca-footer .rcobeca-newsletter-signup__note {
+	color: rgb(255 255 255 / 0.7);
+}
+
+.rcobeca-newsletter .rcobeca-newsletter-signup {
+	max-width: 22rem;
+}
+
+/* Newsletter band */
+.rcobeca-newsletter-band h2 {
+	margin-block-start: 0.35rem;
+}
+
+.rcobeca-newsletter-band__text {
+	font-size: var(--wp--preset--font-size--large);
+	line-height: 1.5;
+	color: var(--wp--preset--color--muted);
+}
+
+@media (min-width: 782px) {
+	.rcobeca-newsletter-band__action {
+		padding-left: var(--wp--preset--spacing--40);
+		border-left: var(--wp--custom--hairline);
+	}
+}
+
+/* A page that ends in a band meets the footer without a white gap. */
+main:has(> .rcobeca-content > .alignfull:last-child) {
+	padding-bottom: 0 !important;
+}
+
+.rcobeca-content > .rcobeca-join-newsletter {
+	margin-block-start: var(--wp--preset--spacing--70);
+}
+
+.rcobeca-footer__main {
+	margin-block-start: var(--wp--preset--spacing--50) !important;
+	gap: var(--wp--preset--spacing--40);
+}
+
+.rcobeca-brand--footer a {
+	color: var(--wp--preset--color--base) !important;
+	text-decoration: none;
+}
+
+.rcobeca-brand--footer .rcobeca-brand__crest {
+	height: 60px;
+}
+
+.rcobeca-footer__mission {
+	max-width: 32ch;
+	font-family: var(--wp--preset--font-family--serif);
+	font-size: 1.125rem;
+	line-height: 1.45;
+	color: rgb(255 255 255 / 0.86);
+}
+
+.rcobeca-footer__contact {
+	line-height: 1.7;
+	color: rgb(255 255 255 / 0.72);
+}
+
+.rcobeca-footer__contact a {
+	color: var(--wp--preset--color--base);
+}
+
+.rcobeca-footer__heading {
+	margin: 0 0 0.75rem;
+	font-size: 1.0625rem;
+	font-style: italic;
+	color: var(--wp--custom--gold-on-dark);
+	letter-spacing: 0;
+}
+
+.rcobeca-footer__list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.rcobeca-footer__list li {
+	padding: 0.3rem 0;
+}
+
+.rcobeca-footer__list a {
+	text-decoration: none;
+}
+
+.rcobeca-footer__trust {
+	margin-block-start: var(--wp--preset--spacing--50) !important;
+	padding-block: var(--wp--preset--spacing--30);
+	border-top: 1px solid rgb(255 255 255 / 0.18);
+	border-bottom: 1px solid rgb(255 255 255 / 0.18);
+	gap: var(--wp--preset--spacing--30);
+}
+
+.rcobeca-footer__legal {
+	max-width: 64ch;
+	margin: 0;
+	color: rgb(255 255 255 / 0.86);
+}
+
+.rcobeca-footer .rcobeca-footer__legal a {
+	margin-left: 0.25rem;
+	color: var(--wp--custom--gold-on-dark);
+	font-weight: 600;
+}
+
+.rcobeca-footer__socials {
+	gap: 0.25rem !important;
+}
+
+.rcobeca-footer__socials .wp-social-link {
+	font-size: 22px;
+}
+
+.rcobeca-footer__socials .wp-social-link a {
+	padding: 0.4rem;
+}
+
+.rcobeca-footer__socials .wp-social-link:hover {
+	transform: none;
+	color: var(--wp--custom--gold-on-dark) !important;
+}
+
+.rcobeca-footer__small {
+	margin-block-start: var(--wp--preset--spacing--30) !important;
+	font-size: 0.8125rem;
+	color: rgb(255 255 255 / 0.7);
+}
+
+@media (max-width: 781.98px) {
+	.wp-block-columns.rcobeca-footer__main > .wp-block-column.rcobeca-footer__links {
+		flex-basis: calc(50% - var(--wp--preset--spacing--40)) !important;
+		flex-grow: 1;
+	}
+
+	.wp-block-columns.rcobeca-footer__main > .wp-block-column.rcobeca-footer__links:last-child {
+		flex-basis: 100% !important;
+	}
+}
+
+/* ---------- Kicker: the small italic serif label above a headline ---------- */
+
+.is-style-kicker {
+	font-family: var(--wp--preset--font-family--serif);
+	font-size: var(--wp--preset--font-size--large);
+	font-style: italic;
+	font-weight: 400;
+	line-height: 1.3;
+	color: var(--wp--preset--color--accent-deep);
+}
+
+.is-style-kicker + :where(h1, h2, h3, .wp-block-heading, .wp-block-post-title) {
+	margin-block-start: 0.35rem;
+}
+
+/* Dark bands: white text, gold kickers, white links. */
+:where(.has-primary-background-color, .has-primary-deep-background-color, .has-contrast-background-color) .is-style-kicker {
+	color: var(--wp--custom--gold-on-dark);
+}
+
+:where(.has-primary-background-color, .has-primary-deep-background-color, .has-contrast-background-color) a:where(:not(.wp-element-button)) {
+	color: inherit;
+}
+
+/* ---------- Style guide ---------- */
+
+.rcobeca-sg-section {
+	padding-block: var(--wp--preset--spacing--60) 0;
+}
+
+.rcobeca-sg-section > h2 {
+	margin-block-start: 0.35rem;
+}
+
+.rcobeca-sg-swatches {
+	gap: var(--wp--preset--spacing--30);
+	margin-block-start: var(--wp--preset--spacing--40) !important;
+}
+
+.rcobeca-sg-swatch > * {
+	margin: 0;
+}
+
+.rcobeca-sg-swatch__chip {
+	aspect-ratio: 3 / 2;
+	border: var(--wp--custom--hairline);
+}
+
+.rcobeca-sg-swatch p {
+	margin-block-start: 0.6rem;
+	font-size: var(--wp--preset--font-size--small);
+	line-height: 1.5;
+}
+
+.rcobeca-style-guide code {
+	font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+	font-size: 0.8125rem;
+	color: var(--wp--preset--color--muted);
+}
+
+.rcobeca-sg-type {
+	margin-block-start: var(--wp--preset--spacing--40) !important;
+	border-top: var(--wp--custom--hairline);
+}
+
+.rcobeca-sg-type__row {
+	gap: var(--wp--preset--spacing--30);
+	padding-block: 0.75rem;
+	border-bottom: var(--wp--custom--hairline);
+}
+
+.rcobeca-sg-type__row > * {
+	margin: 0;
+}
+
+.rcobeca-sg-type__meta {
+	flex: 0 0 8.5rem;
+	font-size: var(--wp--preset--font-size--small);
+	line-height: 1.4;
+}
+
+.rcobeca-sg-type__sample {
+	min-width: 0;
+	line-height: 1.1;
+	overflow-wrap: anywhere;
+}
+
+.rcobeca-sg-spacing__row {
+	gap: var(--wp--preset--spacing--30);
+}
+
+.rcobeca-sg-spacing__row > * {
+	margin: 0;
+}
+
+.rcobeca-sg-spacing__label {
+	flex: 0 0 6.5rem;
+	font-size: var(--wp--preset--font-size--small);
+}
+
+.rcobeca-sg-width {
+	margin-block-start: var(--wp--preset--spacing--30) !important;
+	padding: 0.75rem 1rem;
+	border: 1px dashed var(--wp--preset--color--primary);
+	font-size: var(--wp--preset--font-size--small);
+	color: var(--wp--preset--color--primary);
+	text-align: center;
+}
+
+/* Label bar above each pattern or block shown full width. */
+.rcobeca-sg-label {
+	margin-block: var(--wp--preset--spacing--60) var(--wp--preset--spacing--20) !important;
+	padding-top: var(--wp--preset--spacing--20);
+	border-top: var(--wp--custom--hairline);
+	font-size: var(--wp--preset--font-size--small);
+	color: var(--wp--preset--color--muted);
+}
+
+.rcobeca-sg-label strong {
+	margin-right: 0.5rem;
+	font-family: var(--wp--preset--font-family--serif);
+	font-size: 1.25rem;
+	font-weight: 500;
+	color: var(--wp--preset--color--contrast);
+}
+
+.rcobeca-style-guide {
+	padding-bottom: var(--wp--preset--spacing--70);
+}
+
+/* ---------- Shared patterns ---------- */
+
+/* "More" text link with an arrow. */
+.rcobeca-more {
+	margin: 0;
+	font-weight: 600;
+}
+
+.rcobeca-more a {
+	text-decoration: none;
+}
+
+.rcobeca-more a::after {
+	content: "\2192";
+	display: inline-block;
+	margin-left: 0.35em;
+	transition: transform var(--wp--custom--transition);
+}
+
+.rcobeca-more a:hover {
+	text-decoration: underline;
+}
+
+.rcobeca-more a:hover::after {
+	transform: translateX(3px);
+}
+
+/* Section header */
+.rcobeca-section-header {
+	gap: var(--wp--preset--spacing--30);
+	padding-bottom: var(--wp--preset--spacing--30);
+	border-bottom: var(--wp--custom--hairline);
+}
+
+.rcobeca-section-header__text {
+	max-width: 46rem;
+}
+
+.rcobeca-section-header__text > * {
+	margin-block: 0;
+}
+
+.rcobeca-section-header__text > h2 {
+	margin-block: 0.35rem 0;
+}
+
+.rcobeca-section-header__intro {
+	margin-block-start: 1rem !important;
+	font-size: var(--wp--preset--font-size--large);
+	line-height: 1.5;
+	color: var(--wp--preset--color--muted);
+}
+
+/* Page header */
+.rcobeca-page-header .wp-block-post-title {
+	margin-block-start: 0.35rem;
+}
+
+.rcobeca-page-header > .has-large-font-size {
+	max-width: 40rem;
+	margin-block-start: var(--wp--preset--spacing--30);
+}
+
+/* Colour band */
+.rcobeca-colour-band h2 {
+	margin-block-start: 0.35rem;
+}
+
+.rcobeca-colour-band__aside {
+	padding-left: var(--wp--preset--spacing--40);
+	border-left: 1px solid rgb(255 255 255 / 0.25);
+}
+
+.rcobeca-colour-band__meta {
+	font-family: var(--wp--preset--font-family--serif);
+	font-size: var(--wp--preset--font-size--large);
+	line-height: 1.35;
+}
+
+@media (max-width: 781.98px) {
+	.rcobeca-colour-band__aside {
+		padding-left: 0;
+		padding-top: var(--wp--preset--spacing--30);
+		border-left: 0;
+		border-top: 1px solid rgb(255 255 255 / 0.25);
+	}
+}
+
+/* Card grid */
+.rcobeca-card > * {
+	margin-block: 0;
+}
+
+.rcobeca-card__image {
+	margin-bottom: var(--wp--preset--spacing--20);
+}
+
+.rcobeca-card__image img {
+	width: 100%;
+	transition: opacity var(--wp--custom--transition);
+}
+
+.rcobeca-card:hover .rcobeca-card__image img {
+	opacity: 0.88;
+}
+
+.rcobeca-card__meta {
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--accent-deep);
+}
+
+.rcobeca-card__title {
+	margin-block: 0.4rem 0.5rem !important;
+	font-size: 1.5rem;
+	line-height: 1.2;
+}
+
+.rcobeca-card__title a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.rcobeca-card__title a:hover {
+	text-decoration: underline;
+}
+
+.rcobeca-card p:last-child {
+	color: var(--wp--preset--color--muted);
+}
+
+/* Impact band */
+.rcobeca-impact-band h2 {
+	margin-block-start: 0.35rem;
+}
+
+.rcobeca-impact-band__asof {
+	margin-block-start: var(--wp--preset--spacing--30);
+	font-size: var(--wp--preset--font-size--small);
+	color: var(--wp--preset--color--muted);
+}
+
+.rcobeca-stat {
+	padding-block: var(--wp--preset--spacing--30);
+	border-top: 1px solid var(--wp--preset--color--hairline);
+}
+
+.rcobeca-stat > * {
+	margin-block: 0;
+}
+
+.rcobeca-stat__figure {
+	font-family: var(--wp--preset--font-family--serif);
+	font-size: clamp(2.75rem, 2rem + 2.4vw, 4rem);
+	font-weight: 400;
+	line-height: 1;
+	letter-spacing: -0.02em;
+	color: var(--wp--preset--color--primary);
+}
+
+.rcobeca-stat__label {
+	margin-block: 0.6rem 0.75rem !important;
+	max-width: 28ch;
+}
+
+/* Testimonial */
+.rcobeca-testimonial__quote {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+.rcobeca-testimonial__quote::before {
+	content: "\201C";
+	display: block;
+	height: 0.55em;
+	font-family: var(--wp--preset--font-family--serif);
+	font-size: 6rem;
+	line-height: 1;
+	color: var(--wp--preset--color--accent);
+}
+
+/* A quote reads as a quote, a step below the section headings: 24px on a phone, 36px on a wide screen. */
+.rcobeca-testimonial__quote p {
+	font-size: clamp(1.5rem, 1.1rem + 1.5vw, 2.25rem);
+	line-height: 1.25;
+	letter-spacing: -0.01em;
+}
+
+.rcobeca-testimonial__quote cite {
+	margin-top: var(--wp--preset--spacing--30);
+}
+
+/* Call-to-action band */
+.rcobeca-cta-band__crest {
+	margin-bottom: var(--wp--preset--spacing--20);
+}
+
+.rcobeca-cta-band h2 {
+	margin-block-start: 0.35rem;
+}
+
+.rcobeca-cta-band__text {
+	font-size: var(--wp--preset--font-size--large);
+	line-height: 1.5;
+	color: rgb(255 255 255 / 0.86);
+}
+
+.rcobeca-cta-band .wp-block-buttons {
+	margin-block-start: var(--wp--preset--spacing--40);
+}
+
+.wp-block-button.is-style-outline.rcobeca-on-dark > .wp-block-button__link {
+	color: var(--wp--preset--color--base);
+	border-color: rgb(255 255 255 / 0.7);
+}
+
+.wp-block-button.is-style-outline.rcobeca-on-dark > .wp-block-button__link:hover {
+	background: var(--wp--preset--color--base);
+	border-color: var(--wp--preset--color--base);
+	color: var(--wp--preset--color--primary-deep);
+}
+
+/* Action links (Exeter's Connect · Make a Gift · Attend): each column is one link. */
+.rcobeca-actions__grid {
+	grid-template-columns: minmax(0, 1fr) !important;
+	gap: 0 var(--wp--preset--spacing--50) !important;
+}
+
+@media (min-width: 782px) {
+	.rcobeca-actions__grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+	}
+}
+
+.rcobeca-action {
+	position: relative;
+	padding-block: var(--wp--preset--spacing--30);
+}
+
+.rcobeca-action > * {
+	margin-block: 0;
+}
+
+/* Three link titles side by side: a step below the section headings (Exeter sets them at about 32px). */
+.rcobeca-action__title {
+	font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem);
+	line-height: 1.1;
+}
+
+.rcobeca-action__title a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.rcobeca-action__title a::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+}
+
+.rcobeca-action__title a::before {
+	content: "\2192";
+	float: right;
+	margin-left: 0.5rem;
+	font-family: var(--wp--preset--font-family--sans);
+	font-size: 1.5rem;
+	line-height: 2;
+	color: var(--wp--custom--gold-on-dark);
+	transition: transform var(--wp--custom--transition);
+}
+
+.rcobeca-action:hover .rcobeca-action__title a::before {
+	transform: translateX(4px);
+}
+
+.rcobeca-action:hover .rcobeca-action__title a {
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+}
+
+.rcobeca-action:focus-within {
+	outline: 2px solid var(--wp--custom--gold-on-dark);
+	outline-offset: 4px;
+}
+
+.rcobeca-action__title a:focus {
+	outline: none;
+}
+
+.rcobeca-action__text {
+	margin-block-start: 0.6rem !important;
+	max-width: 32ch;
+	font-family: var(--wp--preset--font-family--serif);
+	font-size: var(--wp--preset--font-size--large);
+	line-height: 1.4;
+	color: rgb(255 255 255 / 0.88);
+}
+
+@media (min-width: 782px) {
+	.rcobeca-action + .rcobeca-action {
+		padding-left: var(--wp--preset--spacing--50);
+		border-left: 1px solid rgb(255 255 255 / 0.25);
+	}
+}
+
+@media (max-width: 781.98px) {
+	.rcobeca-action + .rcobeca-action {
+		border-top: 1px solid rgb(255 255 255 / 0.25);
+	}
+}
+
+/* ---------- Home page ---------- */
+
+/* Hero (charity: water): a full-bleed photo, the mission over a navy fade, Give and Join. */
+.rcobeca-hero.wp-block-cover {
+	min-height: min(640px, 82vh) !important;
+	padding-block: var(--wp--preset--spacing--80) var(--wp--preset--spacing--70);
+}
+
+.rcobeca-hero .wp-block-cover__inner-container > * {
+	max-width: 40rem;
+	margin-inline: 0 !important;
+}
+
+.wp-block-cover.rcobeca-hero.has-custom-content-position .wp-block-cover__inner-container {
+	width: 100% !important;
+	max-width: var(--wp--style--global--wide-size);
+	margin-inline: auto !important;
+}
+
+.rcobeca-hero .is-style-kicker {
+	margin-block-end: 0;
+	font-size: var(--wp--preset--font-size--large);
+	color: var(--wp--custom--gold-on-dark);
+}
+
+.rcobeca-hero .wp-block-cover__inner-container > .rcobeca-hero__title {
+	max-width: 11em;
+	margin-block: 0.5rem 0 !important;
+	font-size: clamp(2.6rem, 1.5rem + 3.4vw, 4.75rem);
+	line-height: 1.02;
+	letter-spacing: -0.025em;
+	text-wrap: balance;
+}
+
+.rcobeca-hero__lead {
+	margin-block: var(--wp--preset--spacing--30) 0 !important;
+	max-width: 34rem !important;
+	font-size: var(--wp--preset--font-size--large);
+	line-height: 1.5;
+	color: rgb(255 255 255 / 0.92);
+}
+
+.rcobeca-hero__actions {
+	margin-block-start: var(--wp--preset--spacing--40) !important;
+	gap: 0.75rem;
+}
+
+.rcobeca-hero__actions .wp-block-button__link {
+	min-width: 8.5rem;
+	padding: 0.85em 1.6em;
+	font-size: 1.0625rem;
+}
+
+/* On a phone the text covers the photo: an even fade, the building still showing above. */
+@media (max-width: 781.98px) {
+	.rcobeca-hero.wp-block-cover {
+		min-height: 560px !important;
+		padding-block: var(--wp--preset--spacing--70) var(--wp--preset--spacing--60);
+	}
+
+	.rcobeca-hero .wp-block-cover__background {
+		background: linear-gradient(180deg, rgb(14 29 66 / 0.35) 0%, rgb(14 29 66 / 0.85) 38%, rgb(14 29 66 / 0.94) 100%) !important;
+	}
+}
+
+/* Home sections: a section header over its listing; News keeps a reading measure. */
+.rcobeca-home-section > .rcobeca-section-header {
+	margin-block-end: var(--wp--preset--spacing--40);
+}
+
+.rcobeca-home-section .rcobeca-project-list {
+	margin-block-start: 0 !important;
+}
+
+.rcobeca-home-section .rcobeca-news.is-strip {
+	margin-block-start: 0;
+}
+
+.rcobeca-home-section + .rcobeca-home-section:not(.has-background) {
+	padding-top: 0 !important;
+}
+
+.rcobeca-home-testimonial .rcobeca-testimonial__quote cite a {
+	color: inherit;
+}
+
+/* Style guide: patterns sit in their own labelled regions. */
+.rcobeca-sg-example > .wp-block-columns,
+.rcobeca-sg-example > .rcobeca-section-header,
+.rcobeca-sg-example > .rcobeca-card-grid {
+	margin-block-end: var(--wp--preset--spacing--40);
+}
+
+.rcobeca-stats {
+	row-gap: 0 !important;
+}
+
+/* ---------- Gallery and lightbox ---------- */
+
+.wp-block-gallery.has-nested-images {
+	--wp--style--gallery-gap-default: var(--wp--preset--spacing--20);
+	gap: var(--wp--preset--spacing--20);
+}
+
+.wp-block-gallery.has-nested-images figure.wp-block-image img {
+	border-radius: 0;
+}
+
+/* A long gallery: the first six photos, then "See all N photos" opens the
+   rest in the viewer. Without scripting every photo shows, and no button. */
+.wp-block-gallery.rcobeca-lightbox figure.wp-block-image.is-extra {
+	display: none;
+}
+
+.rcobeca-lightbox__all {
+	flex-basis: 100%;
+	margin-top: var(--wp--preset--spacing--10);
+}
+
+.rcobeca-lightbox__all button {
+	padding: 0.6rem 1.1rem;
+	border: 1px solid var(--wp--preset--color--primary);
+	border-radius: var(--wp--custom--radius);
+	background: transparent;
+	color: var(--wp--preset--color--primary);
+	font-family: var(--wp--preset--font-family--sans);
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 600;
+	cursor: pointer;
+	transition: background-color var(--wp--custom--transition), color var(--wp--custom--transition);
+}
+
+.rcobeca-lightbox__all button:hover,
+.rcobeca-lightbox__all button:focus-visible {
+	background: var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--base);
+}
+
+.rcobeca-lightbox__all button:focus-visible {
+	outline: 2px solid var(--wp--preset--color--primary);
+	outline-offset: 2px;
+}
+
+@media (scripting: none) {
+	.wp-block-gallery.rcobeca-lightbox figure.wp-block-image.is-extra {
+		display: flex;
+	}
+
+	.rcobeca-lightbox__all {
+		display: none;
+	}
+}
+
+.rcobeca-lightbox .wp-block-image > a {
+	cursor: zoom-in;
+}
+
+.rcobeca-lightbox .wp-block-image > a:focus-visible {
+	outline: 2px solid var(--wp--preset--color--accent);
+	outline-offset: 3px;
+}
+
+.rcobeca-lightbox .wp-block-image img {
+	transition: opacity var(--wp--custom--transition);
+}
+
+.rcobeca-lightbox .wp-block-image > a:hover img {
+	opacity: 0.88;
+}
+
+.wp-block-gallery .blocks-gallery-caption {
+	margin-top: var(--wp--preset--spacing--20);
+	text-align: left;
+}
+
+.rcobeca-sg-example > .rcobeca-gallery {
+	margin-block-end: var(--wp--preset--spacing--40);
+}
+
+/* ---------- YouTube poster and play button (inc/video-facade.php) ---------- */
+
+.rcobeca-video {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	background: var(--wp--preset--color--primary-deep);
+}
+
+.rcobeca-video__link,
+.rcobeca-video__player {
+	display: block;
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
+
+.rcobeca-video__link[hidden] {
+	display: none;
+}
+
+.rcobeca-video__poster {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.rcobeca-video__play {
+	position: absolute;
+	inset: 50% auto auto 50%;
+	width: 72px;
+	height: 72px;
+	transform: translate(-50%, -50%);
+	border-radius: 50%;
+	background: var(--wp--preset--color--primary-deep);
+	box-shadow: 0 0 0 2px var(--wp--preset--color--base);
+	transition: background var(--wp--custom--transition);
+}
+
+.rcobeca-video__play::after {
+	content: "";
+	position: absolute;
+	inset: 50% auto auto 54%;
+	transform: translate(-50%, -50%);
+	border-style: solid;
+	border-width: 13px 0 13px 22px;
+	border-color: transparent transparent transparent var(--wp--preset--color--base);
+}
+
+/* The title on a dark fade along the poster's foot. */
+.rcobeca-video__title {
+	position: absolute;
+	inset: auto 0 0;
+	padding: var(--wp--preset--spacing--50) var(--wp--preset--spacing--30) var(--wp--preset--spacing--20);
+	background: linear-gradient(to top, rgb(15 34 82 / 0.9), rgb(15 34 82 / 0));
+	color: var(--wp--preset--color--base);
+	font-family: var(--wp--preset--font-family--serif);
+	font-size: var(--wp--preset--font-size--large);
+	line-height: 1.3;
+	text-align: left;
+}
+
+@media (max-width: 599.98px) {
+	.rcobeca-video__title {
+		padding: var(--wp--preset--spacing--30) 0.75rem 0.5rem;
+		font-size: 0.9375rem;
+	}
+
+	.rcobeca-video__play {
+		width: 56px;
+		height: 56px;
+		top: 42%;
+	}
+}
+
+.rcobeca-video__link:hover .rcobeca-video__play,
+.rcobeca-video__link:focus-visible .rcobeca-video__play {
+	background: var(--wp--preset--color--primary);
+}
+
+.rcobeca-video__link:focus-visible {
+	outline: 2px solid var(--wp--preset--color--accent);
+	outline-offset: 3px;
+}
+
+.rcobeca-video .screen-reader-text {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+/* A video that only plays on another site (Facebook): a card with a play mark. */
+.rcobeca-video-link {
+	display: flex;
+	align-items: center;
+	gap: var(--wp--preset--spacing--30);
+	padding: var(--wp--preset--spacing--30) var(--wp--preset--spacing--40);
+	border: var(--wp--custom--hairline) solid var(--wp--preset--color--hairline);
+	border-radius: var(--wp--custom--radius);
+	background: var(--wp--preset--color--cream);
+}
+
+.rcobeca-video-link::before {
+	content: "";
+	flex: none;
+	border-style: solid;
+	border-width: 9px 0 9px 15px;
+	border-color: transparent transparent transparent var(--wp--preset--color--primary);
+}
+
+.pswp {
+	--pswp-bg: #0a1430;
+	--pswp-icon-color: #fff;
+	--pswp-icon-color-secondary: var(--wp--preset--color--primary-deep);
+}
+
+.pswp__counter {
+	font-family: var(--wp--preset--font-family--sans);
+	font-size: 0.9375rem;
+	opacity: 0.9;
+}
+
+.pswp__button:focus-visible {
+	outline: 2px solid var(--wp--custom--gold-on-dark);
+	outline-offset: -4px;
+}
+
+.pswp__caption {
+	position: absolute;
+	left: 50%;
+	bottom: 1.25rem;
+	transform: translateX(-50%);
+	max-width: min(42rem, calc(100% - 2rem));
+	padding: 0.5rem 0.9rem;
+	background: rgb(0 0 0 / 0.55);
+	color: #fff;
+	font-family: var(--wp--preset--font-family--serif);
+	font-style: italic;
+	font-size: 1rem;
+	text-align: center;
+}
+
+/* ---------- Templates ---------- */
+
+.rcobeca-title-band {
+	padding-block: var(--wp--preset--spacing--60) var(--wp--preset--spacing--50);
+}
+
+.rcobeca-title-band > * {
+	margin-block: 0;
+}
+
+.rcobeca-title-band > * + * {
+	margin-block-start: var(--wp--preset--spacing--20);
+}
+
+.rcobeca-title-band > .is-style-kicker + * {
+	margin-block-start: 0.35rem;
+}
+
+.rcobeca-title-band .wp-block-query-title,
+.rcobeca-title-band h1 {
+	font-size: var(--wp--preset--font-size--xxx-large);
+}
+
+.rcobeca-content {
+	padding-top: var(--wp--preset--spacing--50);
+}
+
+.rcobeca-content--composed {
+	padding-top: 0;
+}
+
+/*
+ * A page with wide content (a listing, a form beside its aside, a wide photo):
+ * the title and the reading column start at the wide column's left edge, so
+ * every left edge lines up. Text keeps its reading measure.
+ */
+main:has(> .rcobeca-content > .alignwide, > .rcobeca-featured-image) > .rcobeca-title-band > *,
+main:has(> .rcobeca-content > .alignwide, > .rcobeca-featured-image) > .rcobeca-content > :not(.alignwide):not(.alignfull) {
+	margin-left: max(0px, calc((100% - var(--wp--style--global--wide-size)) / 2)) !important;
+}
+
+/* Bands placed in page content butt against each other. */
+.rcobeca-content > .alignfull + .alignfull {
+	margin-block-start: 0;
+}
+
+.rcobeca-featured-image {
+	margin-block-start: var(--wp--preset--spacing--50);
+}
+
+/* Listing: hairline-separated rows, thumbnail on the right. */
+.rcobeca-post-list {
+	margin-block-start: var(--wp--preset--spacing--40);
+}
+
+.rcobeca-post-list .wp-block-post-template {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.rcobeca-post-list__item {
+	gap: var(--wp--preset--spacing--40);
+	padding-block: var(--wp--preset--spacing--40);
+	border-bottom: var(--wp--custom--hairline);
+}
+
+.rcobeca-post-list__text {
+	max-width: 46rem;
+}
+
+.rcobeca-post-list__text > * {
+	margin-block: 0;
+}
+
+.rcobeca-post-list__date {
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 600;
+	color: var(--wp--preset--color--accent-deep);
+}
+
+.rcobeca-post-list__title {
+	margin-block: 0.4rem 0.5rem !important;
+	font-size: var(--wp--preset--font-size--x-large);
+}
+
+.rcobeca-post-list__title a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.rcobeca-post-list__title a:hover {
+	text-decoration: underline;
+}
+
+.rcobeca-post-list__excerpt {
+	color: var(--wp--preset--color--muted);
+}
+
+.rcobeca-post-list__excerpt .wp-block-post-excerpt__excerpt {
+	margin: 0;
+}
+
+.rcobeca-post-list__image {
+	flex-shrink: 0;
+	margin: 0;
+}
+
+.rcobeca-post-list__empty {
+	padding-block: var(--wp--preset--spacing--40);
+	font-size: var(--wp--preset--font-size--large);
+}
+
+.rcobeca-pagination {
+	margin-block-start: var(--wp--preset--spacing--40);
+	font-weight: 600;
+}
+
+@media (max-width: 599.98px) {
+	.rcobeca-post-list__image {
+		display: none;
+	}
+}
+
+/* Search field: square, hairline, primary button. */
+.rcobeca-search .wp-block-search__inside-wrapper {
+	max-width: 36rem;
+}
+
+.rcobeca-search {
+	margin-block-start: var(--wp--preset--spacing--30) !important;
+}
+
+.rcobeca-search .wp-block-search__input {
+	min-height: 3rem;
+	padding: 0.6rem 0.9rem;
+	border: 1px solid var(--wp--preset--color--muted);
+	border-radius: var(--wp--custom--radius);
+	background: var(--wp--preset--color--base);
+	font: inherit;
+}
+
+.rcobeca-search .wp-block-search__button {
+	margin-left: 0.5rem;
+}
+
+.rcobeca-link-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem 2rem;
+	margin-block-start: var(--wp--preset--spacing--50) !important;
+	padding: 0;
+	list-style: none;
+	font-weight: 600;
+}
+
+/* Organisation cards (Royal College Worldwide): hairline-topped, no photo. */
+.rcobeca-orgs {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+	gap: var(--wp--preset--spacing--40) var(--wp--preset--spacing--50);
+	margin-block-start: var(--wp--preset--spacing--30) !important;
+}
+
+.rcobeca-org {
+	padding-block-start: var(--wp--preset--spacing--30);
+	border-top: 2px solid var(--wp--preset--color--primary);
+}
+
+.rcobeca-org > * {
+	margin-block: 0;
+}
+
+.rcobeca-org__place {
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--accent-deep);
+}
+
+.rcobeca-org__name {
+	margin-block: 0.4rem 0.6rem !important;
+	font-size: 1.5rem;
+	line-height: 1.2;
+}
+
+.rcobeca-org__name a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.rcobeca-org__name a:hover {
+	text-decoration: underline;
+}
+
+.rcobeca-org__link {
+	margin-block-start: 0.75rem !important;
+	font-size: var(--wp--preset--font-size--small);
+	color: var(--wp--preset--color--muted);
+}
+
+/* Join or Renew: membership tiers, reasons to join, the pay columns. */
+.rcobeca-tiers {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+	gap: var(--wp--preset--spacing--40);
+	margin-block-start: var(--wp--preset--spacing--50) !important;
+}
+
+.rcobeca-tier {
+	padding: var(--wp--preset--spacing--40);
+	border: var(--wp--custom--hairline);
+	border-top: 3px solid var(--wp--preset--color--primary);
+}
+
+.rcobeca-tier--life {
+	border-top-color: var(--wp--preset--color--accent);
+	background: var(--wp--preset--color--cream);
+}
+
+.rcobeca-tier > * {
+	margin-block: 0;
+}
+
+.rcobeca-tier__name {
+	font-size: var(--wp--preset--font-size--x-large);
+}
+
+.rcobeca-tier__price {
+	margin-block: var(--wp--preset--spacing--20) var(--wp--preset--spacing--30) !important;
+	padding-bottom: var(--wp--preset--spacing--30);
+	border-bottom: var(--wp--custom--hairline);
+	font-size: var(--wp--preset--font-size--large);
+	color: var(--wp--preset--color--muted);
+}
+
+.rcobeca-tier__price strong {
+	font-family: var(--wp--preset--font-family--serif);
+	font-size: clamp(2.75rem, 2rem + 2.4vw, 3.5rem);
+	font-weight: 400;
+	line-height: 1;
+	letter-spacing: -0.02em;
+	color: var(--wp--preset--color--primary);
+}
+
+.rcobeca-tier__points {
+	padding-left: 1.2rem;
+}
+
+.rcobeca-tier__points li + li {
+	margin-top: 0.4rem;
+}
+
+.rcobeca-reasons {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+	gap: var(--wp--preset--spacing--40);
+}
+
+.rcobeca-orgs > *,
+.rcobeca-tiers > *,
+.rcobeca-reasons > * {
+	margin-block-start: 0;
+}
+
+.rcobeca-reason {
+	padding-top: var(--wp--preset--spacing--20);
+	border-top: var(--wp--custom--hairline);
+}
+
+.rcobeca-reason > * {
+	margin-block: 0;
+}
+
+.rcobeca-reason h3 {
+	margin-block-end: 0.5rem;
+	font-size: 1.375rem;
+}
+
+.rcobeca-reason p {
+	color: var(--wp--preset--color--muted);
+}
+
+.rcobeca-join-pay {
+	gap: var(--wp--preset--spacing--60);
+}
+
+.rcobeca-join-pay .wp-block-list li + li {
+	margin-top: 0.5rem;
+}
+
+.rcobeca-join-pay .rcobeca-zeffy-card {
+	max-width: none;
+}
+
+
+/* Form pages (Contact, Update Your Details): the form, and a hairline-ruled aside. */
+.rcobeca-form-page {
+	gap: var(--wp--preset--spacing--60);
+}
+
+.rcobeca-form-page > .wp-block-column > :first-child {
+	margin-block-start: 0;
+}
+
+.rcobeca-form-page__aside {
+	align-self: flex-start;
+	padding-left: var(--wp--preset--spacing--50);
+	border-left: var(--wp--custom--hairline);
+}
+
+.rcobeca-form-page__aside h2 {
+	font-size: var(--wp--preset--font-size--x-large);
+}
+
+.rcobeca-form-page__aside h3 {
+	margin-block-start: var(--wp--preset--spacing--40);
+	font-size: 1.25rem;
+}
+
+.rcobeca-officer {
+	padding-block: var(--wp--preset--spacing--20);
+	border-bottom: var(--wp--custom--hairline);
+	font-size: 0.9375rem;
+	line-height: 1.55;
+	color: var(--wp--preset--color--muted);
+}
+
+.rcobeca-officer + .rcobeca-officer {
+	margin-block-start: 0;
+}
+
+.rcobeca-officer strong {
+	color: var(--wp--preset--color--contrast);
+}
+
+.rcobeca-officer a {
+	font-weight: 600;
+}
+
+.rcobeca-socials.wp-block-social-links {
+	gap: 0.6rem;
+	font-size: 1.25rem;
+}
+
+.rcobeca-socials .wp-social-link,
+.rcobeca-socials.is-style-logos-only .wp-social-link {
+	color: var(--wp--preset--color--primary);
+}
+
+.rcobeca-socials .wp-social-link a {
+	padding: 0;
+}
+
+.rcobeca-socials .wp-social-link:hover {
+	transform: none;
+	text-decoration: underline;
+}
+
+.rcobeca-socials .wp-block-social-link-label {
+	font-family: var(--wp--preset--font-family--sans);
+	font-size: 0.9375rem;
+	font-weight: 600;
+}
+
+@media (max-width: 781.98px) {
+	.rcobeca-form-page__aside {
+		padding-left: 0;
+		padding-top: var(--wp--preset--spacing--40);
+		border-left: 0;
+		border-top: var(--wp--custom--hairline);
+	}
+}
+
+/* Long-form content: air above headings. */
+.rcobeca-content > h2,
+.rcobeca-content > .wp-block-group:not(.alignfull):has(> h2:first-child) {
+	margin-block-start: var(--wp--preset--spacing--50);
+}
+
+.rcobeca-content > h3 {
+	margin-block-start: var(--wp--preset--spacing--40);
+}
+
+.rcobeca-content > :first-child {
+	margin-block-start: 0;
+}
+
+/* ---------- Events ---------- */
+
+/* Single Event: details card beside the story on wide screens, above it on phones. */
+.rcobeca-event-layout {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: var(--wp--preset--spacing--50);
+	padding-top: var(--wp--preset--spacing--50);
+}
+
+.rcobeca-event-layout > * {
+	margin-block: 0 !important;
+}
+
+.rcobeca-event-layout__body {
+	padding-top: 0;
+	max-width: var(--wp--style--global--content-size);
+}
+
+.rcobeca-event-layout__body > :first-child {
+	margin-block-start: 0;
+}
+
+@media (min-width: 960px) {
+	.rcobeca-event-layout {
+		grid-template-columns: minmax(0, 1fr) 21rem;
+		column-gap: var(--wp--preset--spacing--60);
+	}
+
+	.rcobeca-event-layout__aside {
+		grid-column: 2;
+		grid-row: 1;
+		align-self: start;
+		position: sticky;
+		top: calc(var(--wp--custom--header-height) + var(--wp-admin--admin-bar--height, 0px) + 1.5rem);
+	}
+
+	.rcobeca-event-layout__body {
+		grid-column: 1;
+		grid-row: 1;
+	}
+}
+
+/* ---------- Person profile (PD Soros model) ---------- */
+
+.rcobeca-profile-hero {
+	padding-block: var(--wp--preset--spacing--60);
+}
+
+.rcobeca-profile-hero__inner > * {
+	margin-block: 0;
+}
+
+.rcobeca-profile-hero__back {
+	margin-block-end: var(--wp--preset--spacing--30) !important;
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 600;
+}
+
+.rcobeca-profile-hero__back a {
+	color: var(--wp--custom--gold-on-dark);
+}
+
+.rcobeca-profile-hero__back a::before {
+	content: "‹ ";
+}
+
+.rcobeca-profile-hero h1 {
+	font-size: var(--wp--preset--font-size--display);
+	line-height: 1;
+	color: var(--wp--preset--color--base);
+}
+
+.rcobeca-profile-hero .rcobeca-person-facts {
+	margin-block-start: var(--wp--preset--spacing--20);
+	font-family: var(--wp--preset--font-family--serif);
+	font-size: var(--wp--preset--font-size--large);
+	font-style: italic;
+}
+
+.rcobeca-profile {
+	gap: var(--wp--preset--spacing--60) !important;
+	margin-block-start: 0 !important;
+}
+
+.rcobeca-profile > .wp-block-column {
+	padding-block-start: var(--wp--preset--spacing--50);
+}
+
+.rcobeca-profile__photo {
+	margin-block-end: var(--wp--preset--spacing--40);
+}
+
+.rcobeca-profile__bio {
+	font-size: var(--wp--preset--font-size--large);
+}
+
+@media (min-width: 782px) {
+	.rcobeca-profile__aside {
+		padding-inline-start: var(--wp--preset--spacing--50);
+		border-inline-start: var(--wp--custom--hairline);
+	}
+}
+
+/* ---------- Projects ---------- */
+
+/* Status chip: Fundraising in gold (a money ask), Ongoing in blue, Completed quiet. */
+.rcobeca-status {
+	display: inline-block;
+	padding: 0.15rem 0.5rem;
+	border: 1px solid currentcolor;
+	border-radius: var(--wp--custom--radius);
+	font-family: var(--wp--preset--font-family--sans);
+	font-size: 0.8125rem;
+	font-style: normal;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	line-height: 1.4;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--muted);
+}
+
+.rcobeca-status--fundraising {
+	border-color: var(--wp--preset--color--accent);
+	background: var(--wp--preset--color--accent);
+	color: var(--wp--preset--color--contrast);
+}
+
+.rcobeca-status--ongoing {
+	color: var(--wp--preset--color--primary);
+}
+
+/* Progress: "$X of $Y raised, as of <date>" over a thin gold bar. */
+.rcobeca-progress__label {
+	margin: 0 0 0.4rem;
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 600;
+}
+
+.rcobeca-progress__track {
+	height: 8px;
+	background: var(--wp--preset--color--hairline);
+	overflow: hidden;
+}
+
+.rcobeca-progress__fill {
+	display: block;
+	height: 100%;
+	background: var(--wp--preset--color--accent);
+}
+
+/* ---------- Giving pages ---------- */
+
+/* Key facts strip (Transparency): label over value, hairline between. */
+.rcobeca-key-facts {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+	margin-block: var(--wp--preset--spacing--40) 0;
+	padding: 0;
+	list-style: none;
+	border-block: var(--wp--custom--hairline);
+}
+
+.rcobeca-key-facts li {
+	padding: var(--wp--preset--spacing--30) var(--wp--preset--spacing--30) var(--wp--preset--spacing--30) 0;
+	font-family: var(--wp--preset--font-family--serif);
+	font-size: var(--wp--preset--font-size--large);
+	line-height: 1.3;
+}
+
+.rcobeca-key-facts strong {
+	display: block;
+	margin-bottom: 0.3rem;
+	font-family: var(--wp--preset--font-family--sans);
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--accent-deep);
+}
+
+/* Financial documents: Club Year index beside the lists (Wikimedia). */
+.rcobeca-documents {
+	display: grid;
+	grid-template-columns: 9rem 1fr;
+	gap: var(--wp--preset--spacing--40);
+}
+
+/* No documents yet: what will be posted, and how to ask for one now. */
+.rcobeca-documents__empty {
+	grid-column: 1 / -1;
+	margin: 0;
+	padding: var(--wp--preset--spacing--30) var(--wp--preset--spacing--40);
+	border: var(--wp--custom--hairline);
+	border-top: 3px solid var(--wp--preset--color--primary);
+}
+
+.rcobeca-documents__empty > * {
+	margin-block: 0;
+}
+
+.rcobeca-documents__empty > * + * {
+	margin-top: var(--wp--preset--spacing--20);
+}
+
+.rcobeca-documents__empty-heading {
+	font-family: var(--wp--preset--font-family--serif);
+	font-size: var(--wp--preset--font-size--large);
+}
+
+.rcobeca-documents__empty ul {
+	padding-left: 1.1rem;
+}
+
+.rcobeca-documents__ask {
+	padding-top: var(--wp--preset--spacing--20);
+	border-top: var(--wp--custom--hairline);
+	color: var(--wp--preset--color--muted);
+}
+
+.rcobeca-documents__email {
+	font-weight: 600;
+	white-space: nowrap;
+}
+
+.rcobeca-documents__index ul,
+.rcobeca-documents__year ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.rcobeca-documents__index {
+	position: sticky;
+	top: calc(var(--wp--custom--header-height) + var(--wp--preset--spacing--30));
+	align-self: start;
+	border-left: 2px solid var(--wp--preset--color--hairline);
+}
+
+.rcobeca-documents__index a {
+	display: block;
+	padding: 0.3rem 0 0.3rem 0.9rem;
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.rcobeca-documents__year + .rcobeca-documents__year {
+	margin-top: var(--wp--preset--spacing--40);
+}
+
+.rcobeca-documents__year h3 {
+	margin: 0 0 var(--wp--preset--spacing--20);
+}
+
+.rcobeca-documents__year li {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 0.25rem 1rem;
+	padding-block: 0.6rem;
+	border-bottom: var(--wp--custom--hairline);
+}
+
+.rcobeca-documents__type {
+	font-size: var(--wp--preset--font-size--small);
+	color: var(--wp--preset--color--muted);
+}
+
+@media (max-width: 599.98px) {
+	.rcobeca-documents {
+		grid-template-columns: 1fr;
+	}
+
+	.rcobeca-documents__index {
+		position: static;
+	}
+}
+
+/* Donate: appeal beside the Zeffy card on a navy band (Khan Academy). */
+.rcobeca-donate-hero h1 {
+	margin-block: 0.35rem var(--wp--preset--spacing--30);
+	line-height: 1.08;
+}
+
+.rcobeca-donate-hero__points {
+	padding-left: 0;
+	list-style: none;
+}
+
+.rcobeca-donate-hero__points li {
+	position: relative;
+	padding: 0.25rem 0 0.25rem 1.6rem;
+}
+
+.rcobeca-donate-hero__points li::before {
+	content: "";
+	position: absolute;
+	left: 0.1rem;
+	top: 0.7rem;
+	width: 0.65rem;
+	height: 0.35rem;
+	border-left: 2px solid var(--wp--custom--gold-on-dark);
+	border-bottom: 2px solid var(--wp--custom--gold-on-dark);
+	transform: rotate(-45deg);
+}
+
+.rcobeca-donate-hero__legal {
+	padding-top: var(--wp--preset--spacing--30);
+	border-top: 1px solid rgb(255 255 255 / 0.25);
+	font-size: var(--wp--preset--font-size--small);
+	opacity: 0.9;
+}
+
+.rcobeca-donate-hero .rcobeca-zeffy-card {
+	margin-inline: auto 0;
+}
+
+/* Phones: the Zeffy card, and its give button, straight after the opening paragraph. */
+@media (max-width: 781.98px) {
+	.rcobeca-donate-hero .wp-block-columns {
+		flex-direction: column;
+		gap: 0;
+	}
+
+	.rcobeca-donate-hero__appeal {
+		display: contents;
+	}
+
+	.rcobeca-donate-hero__appeal > * {
+		order: 1;
+	}
+
+	.rcobeca-donate-hero__appeal > :is(.rcobeca-donate-hero__points, .rcobeca-donate-hero__legal) {
+		order: 3;
+	}
+
+	.rcobeca-donate-hero .wp-block-column:not(.rcobeca-donate-hero__appeal) {
+		order: 2;
+		margin-block: var(--wp--preset--spacing--30) var(--wp--preset--spacing--40);
+	}
+}
+
+.rcobeca-card-grid + .rcobeca-more {
+	margin-block-start: var(--wp--preset--spacing--40);
+}
+
+.rcobeca-ways h3 {
+	margin-block-start: 0;
+	padding-top: var(--wp--preset--spacing--20);
+	border-top: 2px solid var(--wp--preset--color--primary);
+	font-size: var(--wp--preset--font-size--x-large);
+}
+
+.rcobeca-ways__more {
+	margin-block-start: var(--wp--preset--spacing--40) !important;
+}
+
+/* FAQ: native disclosures with hairlines (GWWC, Khan). */
+.rcobeca-faq {
+	margin-block-start: var(--wp--preset--spacing--40) !important;
+	border-top: var(--wp--custom--hairline);
+}
+
+.rcobeca-faq__item {
+	margin: 0 !important;
+	border-bottom: var(--wp--custom--hairline);
+}
+
+.rcobeca-faq__item summary {
+	position: relative;
+	padding: var(--wp--preset--spacing--30) 2.5rem var(--wp--preset--spacing--30) 0;
+	font-family: var(--wp--preset--font-family--serif);
+	font-size: var(--wp--preset--font-size--large);
+	cursor: pointer;
+	list-style: none;
+}
+
+.rcobeca-faq__item summary::-webkit-details-marker {
+	display: none;
+}
+
+.rcobeca-faq__item summary::after {
+	content: "+";
+	position: absolute;
+	right: 0.25rem;
+	top: 50%;
+	transform: translateY(-50%);
+	font-family: var(--wp--preset--font-family--sans);
+	font-size: 1.5rem;
+	color: var(--wp--preset--color--primary);
+}
+
+.rcobeca-faq__item[open] summary::after {
+	content: "−";
+}
+
+.rcobeca-faq__item > p {
+	margin: 0 0 var(--wp--preset--spacing--30);
+	max-width: 42rem;
+}
+
+.rcobeca-faq__contact {
+	margin-block-start: var(--wp--preset--spacing--40) !important;
+}
+
+/* A lead under a page title keeps a reading measure, aligned with the title. */
+.rcobeca-title-band .rcobeca-title-band__lead {
+	box-sizing: border-box;
+	padding-right: max(0px, calc(min(100%, 1104px) - 46rem));
+}
+
+/* Listing: filters, a count, then the cards. */
+.rcobeca-project-list {
+	margin-block-start: var(--wp--preset--spacing--50) !important;
+}
+
+/* Filters: two rows of square chips. */
+.rcobeca-filters {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--wp--preset--spacing--30) var(--wp--preset--spacing--50);
+	padding-bottom: var(--wp--preset--spacing--30);
+	border-bottom: var(--wp--custom--hairline);
+}
+
+.rcobeca-filters__group {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.5rem 0.75rem;
+}
+
+.rcobeca-filters__label {
+	margin: 0;
+	line-height: 1;
+	font-family: var(--wp--preset--font-family--serif);
+	font-style: italic;
+	color: var(--wp--preset--color--accent-deep);
+}
+
+.rcobeca-filters ul {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.4rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.rcobeca-filters a {
+	display: block;
+	padding: 0.35rem 0.8rem;
+	border: var(--wp--custom--hairline);
+	border-radius: var(--wp--custom--radius);
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 600;
+	color: var(--wp--preset--color--contrast);
+	text-decoration: none;
+}
+
+.rcobeca-filters a:hover {
+	border-color: var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--primary);
+}
+
+.rcobeca-filters a[aria-current] {
+	border-color: var(--wp--preset--color--primary);
+	background: var(--wp--preset--color--primary);
+	color: var(--wp--preset--color--base);
+}
+
+.rcobeca-project-list__count {
+	margin: var(--wp--preset--spacing--30) 0 0;
+	font-size: var(--wp--preset--font-size--small);
+	color: var(--wp--preset--color--muted);
+}
+
+/* Cards: Watsi's anatomy, with our square corners and hairlines. */
+.rcobeca-project-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+	gap: var(--wp--preset--spacing--50) var(--wp--preset--spacing--40);
+	margin: var(--wp--preset--spacing--40) 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.rcobeca-project-card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.rcobeca-project-card > * {
+	margin-block: 0;
+}
+
+.rcobeca-project-card__image {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 3 / 2;
+	object-fit: cover;
+	margin-bottom: var(--wp--preset--spacing--20) !important;
+	transition: opacity var(--wp--custom--transition);
+}
+
+/* No usable photo: a type-only panel, the status and title set on cream. */
+.rcobeca-project-card__panel {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	gap: var(--wp--preset--spacing--10);
+	padding: var(--wp--preset--spacing--30);
+	overflow: hidden;
+	background: var(--wp--preset--color--cream);
+	border-top: 3px solid var(--wp--preset--color--accent);
+}
+
+.rcobeca-project-card__panel-status {
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--accent-deep);
+}
+
+.rcobeca-project-card__panel-title {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 4;
+	overflow: hidden;
+	font-family: var(--wp--preset--font-family--serif);
+	font-size: var(--wp--preset--font-size--x-large);
+	line-height: 1.15;
+	color: var(--wp--preset--color--primary-deep);
+}
+
+.rcobeca-project-card:hover .rcobeca-project-card__image {
+	opacity: 0.88;
+}
+
+.rcobeca-project-card__meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.25rem 0.6rem;
+	font-size: var(--wp--preset--font-size--small);
+	color: var(--wp--preset--color--muted);
+}
+
+.rcobeca-project-card__title {
+	margin-block: 0.5rem 0.4rem !important;
+	font-size: 1.5rem;
+	line-height: 1.25;
+}
+
+.rcobeca-project-card__title a {
+	color: inherit;
+	text-decoration: none;
+}
+
+/* The whole card is the link's hit area; the title is its name. */
+.rcobeca-project-card__title a::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+}
+
+.rcobeca-project-card__title a:hover {
+	text-decoration: underline;
+}
+
+.rcobeca-project-card:focus-within {
+	outline: 2px solid var(--wp--preset--color--primary);
+	outline-offset: 6px;
+}
+
+.rcobeca-project-card__title a:focus-visible {
+	outline: none;
+}
+
+/* Excerpts are trimmed to whole words on the server, never clipped here. */
+.rcobeca-project-card__excerpt {
+	color: var(--wp--preset--color--muted);
+}
+
+.rcobeca-project-card .rcobeca-progress,
+.rcobeca-project-card__money {
+	margin-top: auto !important;
+	padding-top: var(--wp--preset--spacing--20);
+}
+
+.rcobeca-project-card__money {
+	font-family: var(--wp--preset--font-family--serif);
+	font-size: 1.125rem;
+	color: var(--wp--preset--color--primary);
+}
+
+/* "Show more": the count, then the button, centred under the grid. */
+.rcobeca-project-list__more {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--wp--preset--spacing--20);
+	margin-top: var(--wp--preset--spacing--60);
+	padding-top: var(--wp--preset--spacing--40);
+	border-top: var(--wp--custom--hairline);
+}
+
+.rcobeca-project-list__shown {
+	margin: 0;
+	font-size: var(--wp--preset--font-size--small);
+	color: var(--wp--preset--color--muted);
+}
+
+.rcobeca-project-list__empty {
+	margin-top: var(--wp--preset--spacing--40);
+}
+
+/* Project page: story on the left, summary panel on the right. */
+.rcobeca-project-band__lead {
+	max-width: 46rem;
+}
+
+.rcobeca-project--kicker {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 0.25rem 0.75rem;
+	color: var(--wp--preset--color--muted);
+}
+
+.rcobeca-project-layout .rcobeca-featured-image {
+	margin-block-start: 0;
+}
+
+.rcobeca-project-story {
+	padding-top: var(--wp--preset--spacing--40);
+}
+
+.rcobeca-project--summary {
+	position: sticky;
+	top: calc(var(--wp--custom--header-height) + var(--wp--preset--spacing--30));
+	padding: var(--wp--preset--spacing--40);
+	border: var(--wp--custom--hairline);
+	border-top: 3px solid var(--wp--preset--color--primary);
+}
+
+.rcobeca-project--summary.is-fundraising {
+	border-top-color: var(--wp--preset--color--accent);
+}
+
+.rcobeca-project--summary > * {
+	margin-block: 0;
+}
+
+.rcobeca-project--summary > * + * {
+	margin-block-start: var(--wp--preset--spacing--30);
+}
+
+.rcobeca-project__figure {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 0.25rem 0.5rem;
+}
+
+.rcobeca-project__amount {
+	font-family: var(--wp--preset--font-family--serif);
+	font-size: var(--wp--preset--font-size--xx-large);
+	line-height: 1.1;
+	color: var(--wp--preset--color--primary);
+}
+
+.rcobeca-project__figure-label {
+	color: var(--wp--preset--color--muted);
+}
+
+.rcobeca-project--summary .rcobeca-zeffy-card {
+	max-width: none;
+	margin-inline: calc(-1 * var(--wp--preset--spacing--40) - 1px);
+	border-inline: 0;
+}
+
+.rcobeca-project__trust {
+	font-size: var(--wp--preset--font-size--small);
+	color: var(--wp--preset--color--muted);
+}
+
+.rcobeca-project__facts {
+	margin-inline: 0;
+	margin-bottom: 0;
+	border-top: var(--wp--custom--hairline);
+}
+
+.rcobeca-project__facts > div {
+	display: grid;
+	grid-template-columns: 6.5rem 1fr;
+	gap: 0.75rem;
+	padding-block: 0.6rem;
+	border-bottom: var(--wp--custom--hairline);
+}
+
+.rcobeca-project__facts dt {
+	font-size: var(--wp--preset--font-size--small);
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--accent-deep);
+}
+
+.rcobeca-project__facts dd {
+	margin: 0;
+}
+
+.rcobeca-project__back {
+	font-weight: 600;
+}
+
+/* Timeline: Watsi's dated steps on a vertical rule. */
+.rcobeca-project--timeline {
+	margin-block-start: var(--wp--preset--spacing--60);
+	padding-top: var(--wp--preset--spacing--40);
+	border-top: var(--wp--custom--hairline);
+}
+
+.rcobeca-timeline__heading {
+	margin: 0 0 var(--wp--preset--spacing--30);
+	font-size: var(--wp--preset--font-size--x-large);
+}
+
+.rcobeca-timeline {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.rcobeca-timeline__step {
+	position: relative;
+	margin-left: 0.4rem;
+	padding: 0 0 var(--wp--preset--spacing--30) 1.75rem;
+	border-left: 2px solid var(--wp--preset--color--hairline);
+}
+
+.rcobeca-timeline__step:last-child {
+	padding-bottom: 0;
+	border-left-color: transparent;
+}
+
+.rcobeca-timeline__step::before {
+	content: "";
+	position: absolute;
+	left: -0.45rem;
+	top: 0.3rem;
+	width: 0.8rem;
+	height: 0.8rem;
+	border-radius: 50%;
+	background: var(--wp--preset--color--primary);
+}
+
+.is-fundraising .rcobeca-timeline__step:last-child::before,
+.is-ongoing .rcobeca-timeline__step:last-child::before {
+	box-sizing: border-box;
+	border: 2px solid var(--wp--preset--color--primary);
+	background: var(--wp--preset--color--base);
+}
+
+.rcobeca-timeline__step p {
+	margin: 0;
+}
+
+.rcobeca-timeline__when {
+	font-size: var(--wp--preset--font-size--small);
+	color: var(--wp--preset--color--muted);
+}
+
+.rcobeca-timeline__label {
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--contrast);
+}
+
+@media (max-width: 781.98px) {
+	/* Phones: the summary (and any donate form) comes before the story. */
+	.rcobeca-project-layout__aside {
+		order: -1;
+	}
+
+	.rcobeca-project--summary {
+		position: static;
+	}
+}

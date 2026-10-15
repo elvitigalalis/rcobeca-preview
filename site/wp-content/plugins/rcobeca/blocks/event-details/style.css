@@ -1,0 +1,112 @@
+/* Event details card: hairline box, royal blue top rule, two-column definition rows. */
+.rcobeca-event-details {
+	box-sizing: border-box;
+	padding: 1.5rem 1.5rem 0.5rem;
+	background: var(--wp--preset--color--base, #fff);
+	border: 1px solid var(--wp--preset--color--hairline, #d9d3c7);
+	border-top: 3px solid var(--wp--preset--color--primary, #1a3b85);
+	font-size: 0.9375rem;
+	line-height: 1.5;
+}
+
+.rcobeca-event-details__heading {
+	margin: 0 0 0.75rem;
+	font-family: var(--wp--preset--font-family--serif, Georgia, serif);
+	font-size: 1.375rem;
+	font-weight: 450;
+}
+
+.rcobeca-event-details__list {
+	margin: 0;
+}
+
+.rcobeca-event-details__row {
+	display: grid;
+	grid-template-columns: 7.5rem minmax(0, 1fr);
+	gap: 1rem;
+	padding: 0.75rem 0;
+	border-top: 1px solid var(--wp--preset--color--hairline, #d9d3c7);
+}
+
+.rcobeca-event-details__row dt {
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--accent-deep, #7f5f18);
+	padding-top: 0.15rem;
+}
+
+.rcobeca-event-details__row dd {
+	margin: 0;
+	overflow-wrap: anywhere;
+}
+
+.rcobeca-event-details .rcobeca-filetype {
+	color: var(--wp--preset--color--muted, #565c68);
+	font-size: 0.8125rem;
+}
+
+/* On dark bands (the Ball page hero) the card stays a white card. */
+:where(.has-primary-background-color, .has-primary-deep-background-color) .rcobeca-event-details {
+	color: var(--wp--preset--color--contrast, #15181e);
+}
+
+:where(.has-primary-background-color, .has-primary-deep-background-color) .rcobeca-event-details a {
+	color: var(--wp--preset--color--primary, #1a3b85);
+}
+
+/* A past Ball's Souvenir Journal ads, kept as a record under the details. */
+.rcobeca-event-details__ads {
+	padding: 0.75rem 0 1rem;
+	border-top: 1px solid var(--wp--preset--color--hairline, #d9d3c7);
+}
+
+.rcobeca-event-details__subheading {
+	margin: 0 0 0.5rem;
+	font-size: 0.75rem;
+	font-family: inherit;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--accent-deep, #7f5f18);
+}
+
+.rcobeca-event-details__tiers {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.rcobeca-event-details__tiers thead th {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+.rcobeca-event-details__tiers th,
+.rcobeca-event-details__tiers td {
+	padding: 0.35rem 0;
+	border-bottom: 1px solid var(--wp--preset--color--hairline, #d9d3c7);
+	font-weight: 400;
+	text-align: left;
+	vertical-align: top;
+}
+
+.rcobeca-event-details__tiers td {
+	padding-left: 1rem;
+	text-align: right;
+	white-space: nowrap;
+	font-variant-numeric: tabular-nums;
+}
+
+.rcobeca-event-details__ads p,
+.rcobeca-event-details__ads ul {
+	margin: 0.75rem 0 0;
+}
+
+.rcobeca-event-details__ads ul {
+	padding-left: 1.1rem;
+}

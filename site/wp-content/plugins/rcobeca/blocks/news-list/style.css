@@ -1,0 +1,208 @@
+/* News: a lead story (PD Soros), then hairline rows with the photo on the right (Exeter "Alumni Today"). */
+
+.rcobeca-news {
+	--rcobeca-news-thumb: 13.75rem;
+}
+
+.rcobeca-news__item {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: var(--wp--preset--spacing--30);
+	padding-block: var(--wp--preset--spacing--40);
+	border-bottom: var(--wp--custom--hairline);
+}
+
+.rcobeca-news__list > .rcobeca-news__item:first-child {
+	border-top: var(--wp--custom--hairline);
+}
+
+.rcobeca-news__text > * {
+	margin-block: 0;
+}
+
+.rcobeca-news__meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 0.25rem 0.75rem;
+	font-size: var(--wp--preset--font-size--small);
+}
+
+.rcobeca-news__kicker {
+	font-family: var(--wp--preset--font-family--serif);
+	font-size: 1.0625rem;
+	font-style: italic;
+	color: var(--wp--preset--color--accent-deep);
+}
+
+.rcobeca-news__meta time {
+	font-weight: 600;
+	color: var(--wp--preset--color--muted);
+}
+
+.rcobeca-news__title {
+	margin-block: 0.45rem 0 !important;
+	font-size: var(--wp--preset--font-size--x-large);
+	line-height: 1.2;
+}
+
+/* On the home page the rows sit under the Project cards: titles the same size as theirs. */
+.rcobeca-news.is-strip .rcobeca-news__title {
+	font-size: 1.5rem;
+}
+
+.rcobeca-news__title a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.rcobeca-news__title a:hover {
+	color: var(--wp--preset--color--primary);
+	text-decoration: underline;
+}
+
+.rcobeca-news__excerpt {
+	margin-block-start: 0.6rem !important;
+	max-width: 42rem;
+	color: var(--wp--preset--color--muted);
+}
+
+.rcobeca-news__image {
+	display: block;
+	overflow: hidden;
+	background: var(--wp--preset--color--cream);
+}
+
+.rcobeca-news__image img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	aspect-ratio: 3 / 2;
+	object-fit: cover;
+	transition: opacity var(--wp--custom--transition);
+}
+
+.rcobeca-news__item:hover .rcobeca-news__image img {
+	opacity: 0.88;
+}
+
+/* Rows: photo on the right from tablet width up. */
+@media (min-width: 600px) {
+	.rcobeca-news__item.has-image:not(.is-lead) {
+		grid-template-columns: minmax(0, 1fr) var(--rcobeca-news-thumb);
+		gap: var(--wp--preset--spacing--40);
+	}
+
+	.rcobeca-news__item:not(.is-lead) .rcobeca-news__image {
+		grid-column: 2;
+		grid-row: 1;
+		align-self: start;
+	}
+}
+
+@media (max-width: 599.98px) {
+	.rcobeca-news__item:not(.is-lead) .rcobeca-news__image {
+		display: none;
+	}
+}
+
+/* Lead story: a large photo beside a big serif headline. */
+.rcobeca-news__item.is-lead {
+	padding-block: 0 var(--wp--preset--spacing--50);
+	border-bottom: 0;
+}
+
+.rcobeca-news__item.is-lead .rcobeca-news__title {
+	font-size: var(--wp--preset--font-size--xx-large);
+	line-height: 1.1;
+	letter-spacing: -0.01em;
+}
+
+.rcobeca-news__item.is-lead .rcobeca-news__excerpt {
+	font-size: var(--wp--preset--font-size--large);
+	line-height: 1.5;
+}
+
+@media (min-width: 782px) {
+	.rcobeca-news__item.is-lead.has-image {
+		grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+		align-items: center;
+		gap: var(--wp--preset--spacing--50);
+	}
+}
+
+/* Home page strip: rows on a reading measure. */
+.rcobeca-news.is-strip .rcobeca-news__item:first-child {
+	border-top: 0;
+}
+
+.rcobeca-news.is-strip .rcobeca-news__item:last-child {
+	border-bottom: 0;
+}
+
+/* Paging: Newer, "Page 2 of 8", Older. */
+/* Newer on the left, the page count in the middle, Older on the right. */
+.rcobeca-news__pages {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+	align-items: baseline;
+	gap: 1rem;
+	margin-block-start: var(--wp--preset--spacing--40);
+	font-weight: 600;
+}
+
+.rcobeca-news__newer {
+	grid-column: 1;
+	justify-self: start;
+}
+
+.rcobeca-news__older {
+	grid-column: 3;
+	justify-self: end;
+}
+
+.rcobeca-news__count {
+	grid-column: 2;
+	text-align: center;
+	font-weight: 400;
+	color: var(--wp--preset--color--muted);
+}
+
+/* Phones: the page count on its own line above the two links. */
+@media (max-width: 599.98px) {
+	.rcobeca-news__pages {
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+		row-gap: 0.5rem;
+	}
+
+	.rcobeca-news__count {
+		grid-column: 1 / -1;
+		grid-row: 1;
+	}
+
+	.rcobeca-news__newer,
+	.rcobeca-news__older {
+		grid-row: 2;
+	}
+
+	.rcobeca-news__older {
+		grid-column: 2;
+	}
+}
+
+.rcobeca-news__newer::before {
+	content: "\2190\00a0";
+}
+
+.rcobeca-news__older::after {
+	content: "\00a0\2192";
+}
+
+.rcobeca-news__pages a {
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+.rcobeca-news__pages a:hover {
+	text-decoration: underline;
+}

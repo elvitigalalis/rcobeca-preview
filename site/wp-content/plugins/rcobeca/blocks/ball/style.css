@@ -1,0 +1,452 @@
+/*
+ * Royal Charity Ball page. Navy hero with a gold status label, then
+ * alternating white and cream sections at the wide width. Square corners,
+ * hairlines, no shadows.
+ */
+.rcobeca-ball {
+	--rcobeca-ball-gutter: max(1rem, var(--wp--preset--spacing--40, 2rem));
+	--rcobeca-ball-gold: var(--wp--custom--gold-on-dark, #d9b866);
+	margin-block: 0 !important;
+}
+
+.rcobeca-ball > * {
+	margin-block: 0;
+}
+
+.rcobeca-ball__inner {
+	box-sizing: border-box;
+	max-width: var(--wp--style--global--wide-size, 1104px);
+	margin-inline: auto;
+}
+
+.rcobeca-ball__inner--narrow {
+	max-width: var(--wp--style--global--content-size, 816px);
+}
+
+.rcobeca-ball h2 {
+	margin: 0.35rem 0 0;
+	font-size: var(--wp--preset--font-size--xx-large, 3rem);
+}
+
+.rcobeca-ball h2 a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.rcobeca-ball h2 a:hover {
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+}
+
+.rcobeca-ball .is-style-kicker {
+	margin: 0;
+}
+
+/* Hero */
+.rcobeca-ball__hero {
+	padding: var(--wp--preset--spacing--70, 5rem) var(--rcobeca-ball-gutter);
+	background:
+		radial-gradient(120% 90% at 85% 0%, rgb(26 59 133 / 0.9) 0%, rgb(15 34 82 / 0) 60%),
+		var(--wp--preset--color--primary-deep, #0f2252);
+	color: var(--wp--preset--color--base, #fff);
+}
+
+/* A Ball-night photo behind the hero, under a navy overlay for contrast. */
+.rcobeca-ball__hero.has-photo {
+	position: relative;
+	isolation: isolate;
+	overflow: hidden;
+}
+
+.rcobeca-ball__hero-photo {
+	position: absolute;
+	inset: 0;
+	z-index: -2;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center 40%;
+}
+
+.rcobeca-ball__hero.has-photo::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background: linear-gradient(90deg, rgb(15 34 82 / 0.94) 0%, rgb(15 34 82 / 0.86) 50%, rgb(15 34 82 / 0.7) 100%);
+}
+
+.rcobeca-ball__hero-inner {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: var(--wp--preset--spacing--50, 3rem);
+	align-items: center;
+	max-width: var(--wp--style--global--wide-size, 1104px);
+	margin-inline: auto;
+}
+
+@media (min-width: 960px) {
+	.rcobeca-ball__hero-inner {
+		grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+		column-gap: var(--wp--preset--spacing--60, 4rem);
+	}
+}
+
+.rcobeca-ball__hero-text > * {
+	margin: 0;
+	max-width: 46rem;
+}
+
+.rcobeca-ball__hero-aside {
+	margin: 0;
+}
+
+/* Between Balls: the count of Balls, framed by gold hairlines. */
+.rcobeca-ball__count {
+	padding-block: var(--wp--preset--spacing--40, 2rem);
+	border-block: 1px solid rgb(217 184 102 / 0.55);
+	font-family: var(--wp--preset--font-family--serif, Georgia, serif);
+	font-size: var(--wp--preset--font-size--large, 1.25rem);
+	line-height: 1.4;
+	color: rgb(255 255 255 / 0.86);
+}
+
+.rcobeca-ball__count strong {
+	display: block;
+	margin-bottom: 0.5rem;
+	font-size: clamp(5rem, 3rem + 6vw, 8.5rem);
+	font-weight: 400;
+	line-height: 0.9;
+	letter-spacing: -0.03em;
+	color: var(--rcobeca-ball-gold);
+}
+
+/* The Ball's flyer or banner, on a gold hairline mount. */
+.rcobeca-ball__flyer {
+	padding: 0.75rem;
+	border: 1px solid rgb(217 184 102 / 0.55);
+}
+
+.rcobeca-ball__flyer img {
+	display: block;
+	width: 100%;
+	height: auto;
+	max-height: 32rem;
+	object-fit: contain;
+}
+
+@media (max-width: 959.98px) {
+	.rcobeca-ball__flyer {
+		max-width: 22rem;
+	}
+}
+
+/* The state label is the site's kicker: italic serif, gold on the navy hero. */
+.rcobeca-ball__status {
+	font-family: var(--wp--preset--font-family--serif);
+	font-size: var(--wp--preset--font-size--large);
+	font-style: italic;
+	line-height: 1.3;
+	color: var(--rcobeca-ball-gold);
+}
+
+.rcobeca-ball__title {
+	margin-top: var(--wp--preset--spacing--30, 1.5rem) !important;
+	font-size: var(--wp--preset--font-size--display, 5.5rem);
+	font-weight: 400;
+	line-height: 1;
+	letter-spacing: -0.025em;
+	color: inherit;
+}
+
+.rcobeca-ball__when {
+	margin-top: var(--wp--preset--spacing--40, 2rem) !important;
+	font-family: var(--wp--preset--font-family--serif, Georgia, serif);
+	font-size: var(--wp--preset--font-size--x-large, 1.875rem);
+	line-height: 1.3;
+}
+
+.rcobeca-ball__lead {
+	margin-top: var(--wp--preset--spacing--30, 1.5rem) !important;
+	font-size: var(--wp--preset--font-size--large, 1.25rem);
+	color: rgb(255 255 255 / 0.86);
+}
+
+.rcobeca-ball__raised {
+	margin-top: var(--wp--preset--spacing--30, 1.5rem) !important;
+	font-family: var(--wp--preset--font-family--serif, Georgia, serif);
+	font-size: var(--wp--preset--font-size--large, 1.25rem);
+	color: rgb(255 255 255 / 0.86);
+}
+
+.rcobeca-ball__raised strong {
+	display: block;
+	font-size: clamp(3rem, 2rem + 3vw, 4.5rem);
+	font-weight: 400;
+	line-height: 1;
+	color: var(--rcobeca-ball-gold);
+}
+
+.rcobeca-ball__actions {
+	margin-top: var(--wp--preset--spacing--40, 2rem) !important;
+	gap: 0.75rem;
+}
+
+.rcobeca-ball__hero .wp-block-button.is-style-outline > .wp-block-button__link {
+	color: var(--wp--preset--color--base, #fff);
+	border-color: rgb(255 255 255 / 0.7);
+}
+
+.rcobeca-ball__hero .wp-block-button.is-style-outline > .wp-block-button__link:hover {
+	background: var(--wp--preset--color--base, #fff);
+	border-color: var(--wp--preset--color--base, #fff);
+	color: var(--wp--preset--color--primary-deep, #0f2252);
+}
+
+/* Sections */
+.rcobeca-ball__section {
+	padding: var(--wp--preset--spacing--70, 5rem) var(--rcobeca-ball-gutter);
+}
+
+/* Sections alternate white and cream (render.php sets is-tinted). */
+.rcobeca-ball__section.is-tinted {
+	background: var(--wp--preset--color--cream, #f6f1e7);
+}
+
+.rcobeca-ball__split {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: var(--wp--preset--spacing--50, 3rem);
+	align-items: start;
+}
+
+@media (min-width: 960px) {
+	.rcobeca-ball__split {
+		grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+		column-gap: var(--wp--preset--spacing--60, 4rem);
+	}
+}
+
+.rcobeca-ball__text > * {
+	margin-block: 0;
+}
+
+.rcobeca-ball__text > * + * {
+	margin-top: 1.25rem;
+}
+
+.rcobeca-ball__text > h2 + * {
+	margin-top: var(--wp--preset--spacing--30, 1.5rem);
+}
+
+.rcobeca-ball__price {
+	font-family: var(--wp--preset--font-family--serif, Georgia, serif);
+	font-size: var(--wp--preset--font-size--x-large, 1.875rem);
+	line-height: 1.25;
+}
+
+.rcobeca-ball__small {
+	font-size: 0.9375rem;
+	color: var(--wp--preset--color--muted, #565c68);
+}
+
+.rcobeca-ball__tickets .rcobeca-zeffy-card {
+	max-width: none;
+}
+
+.rcobeca-ball__intro {
+	max-width: 42rem;
+	margin: var(--wp--preset--spacing--30, 1.5rem) 0 var(--wp--preset--spacing--40, 2rem);
+	font-size: var(--wp--preset--font-size--large, 1.25rem);
+	color: var(--wp--preset--color--muted, #565c68);
+}
+
+/* Ad tiers, each with its own Zeffy "Buy" link */
+.rcobeca-ball .screen-reader-text {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+.rcobeca-ball__tiers .rcobeca-ball__buy {
+	font-family: var(--wp--preset--font-family--sans, sans-serif);
+	font-size: 1rem;
+	font-weight: 600;
+}
+
+.rcobeca-ball__tiers {
+	width: 100%;
+	border-collapse: collapse;
+	border-top: 1px solid var(--wp--preset--color--contrast, #15181e);
+}
+
+.rcobeca-ball__tiers th,
+.rcobeca-ball__tiers td {
+	padding: 0.85rem 0;
+	border-bottom: 1px solid var(--wp--preset--color--hairline, #d9d3c7);
+	text-align: left;
+	vertical-align: baseline;
+}
+
+.rcobeca-ball__tiers thead th {
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--accent-deep, #7f5f18);
+}
+
+.rcobeca-ball__tiers tbody th {
+	font-weight: 450;
+}
+
+.rcobeca-ball__tiers td {
+	padding-left: 1rem;
+	font-family: var(--wp--preset--font-family--serif, Georgia, serif);
+	font-size: 1.25rem;
+	text-align: right;
+	white-space: nowrap;
+}
+
+.rcobeca-ball__specs > * {
+	margin-block: 0 1rem;
+}
+
+.rcobeca-ball__specs ul {
+	padding-left: 1.1rem;
+}
+
+/* Sponsors: tier labels in small caps, names centred, Whitney-style roll. */
+.rcobeca-ball__sponsors .rcobeca-ball__inner {
+	text-align: center;
+}
+
+.rcobeca-ball__tier {
+	margin-top: var(--wp--preset--spacing--40, 2rem);
+}
+
+.rcobeca-ball__tier h3 {
+	margin: 0 0 0.75rem;
+	font-family: var(--wp--preset--font-family--sans, sans-serif);
+	font-size: 0.8125rem;
+	font-weight: 600;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--accent-deep, #7f5f18);
+}
+
+.rcobeca-ball__tier ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	font-family: var(--wp--preset--font-family--serif, Georgia, serif);
+	font-size: 1.375rem;
+	line-height: 1.6;
+}
+
+.rcobeca-ball__asof {
+	margin: var(--wp--preset--spacing--40, 2rem) 0 0;
+	font-size: 0.875rem;
+	color: var(--wp--preset--color--muted, #565c68);
+}
+
+/* Table Lookup slot (filled by the rcobeca/table-lookup block). */
+.rcobeca-ball__lookup h2 {
+	margin-bottom: var(--wp--preset--spacing--30, 1.5rem);
+}
+
+.rcobeca-ball__table-lookup {
+	padding: var(--wp--preset--spacing--40, 2rem);
+	background: var(--wp--preset--color--base, #fff);
+	border: 1px solid var(--wp--preset--color--hairline, #d9d3c7);
+	border-top: 3px solid var(--wp--preset--color--primary, #1a3b85);
+	font-size: var(--wp--preset--font-size--large, 1.25rem);
+}
+
+.rcobeca-ball__table-lookup > :first-child {
+	margin-top: 0;
+}
+
+.rcobeca-ball__table-lookup > :last-child {
+	margin-bottom: 0;
+}
+
+/* Recap story */
+.rcobeca-ball__content > * {
+	margin-block: 1.25rem 0;
+}
+
+.rcobeca-ball__content > h2 {
+	margin-top: var(--wp--preset--spacing--40, 2rem);
+	font-size: var(--wp--preset--font-size--x-large, 1.875rem);
+}
+
+/* Past Balls band */
+.rcobeca-ball__past-head {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: end;
+	justify-content: space-between;
+	gap: 1rem;
+	padding-bottom: var(--wp--preset--spacing--30, 1.5rem);
+	border-bottom: 1px solid var(--wp--preset--color--hairline, #d9d3c7);
+}
+
+.rcobeca-ball__past-head .rcobeca-more {
+	margin: 0;
+}
+
+.rcobeca-ball__past-list {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+	gap: var(--wp--preset--spacing--40, 2rem);
+	margin: var(--wp--preset--spacing--40, 2rem) 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+.rcobeca-ball__past-list a {
+	display: block;
+	color: inherit;
+	text-decoration: none;
+}
+
+/* Flyer or logo art, shown whole on a navy mount. */
+.rcobeca-ball__past-list img {
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 3 / 2;
+	object-fit: contain;
+	padding: 0.5rem;
+	background: var(--wp--preset--color--primary-deep, #0f2252);
+	margin-bottom: 0.85rem;
+	transition: opacity var(--wp--custom--transition, 150ms ease-in-out);
+}
+
+.rcobeca-ball__past-list a:hover img {
+	opacity: 0.88;
+}
+
+.rcobeca-ball__past-year {
+	display: block;
+	font-family: var(--wp--preset--font-family--serif, Georgia, serif);
+	font-size: 2rem;
+	line-height: 1.1;
+	color: var(--wp--preset--color--primary, #1a3b85);
+}
+
+.rcobeca-ball__past-title {
+	display: block;
+	margin-top: 0.25rem;
+	font-size: 0.9375rem;
+	color: var(--wp--preset--color--muted, #565c68);
+}
+
+.rcobeca-ball__past-list a:hover .rcobeca-ball__past-title {
+	text-decoration: underline;
+}

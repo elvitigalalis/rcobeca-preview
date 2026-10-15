@@ -1,0 +1,166 @@
+/* Past Balls: a sticky decade bar, then one hairline row per Ball with the year set large. */
+.rcobeca-past-balls__jump {
+	position: sticky;
+	top: calc(var(--wp--custom--header-height, 84px) + var(--wp-admin--admin-bar--height, 0px));
+	z-index: 5;
+	padding-block: 0.75rem;
+	background: var(--wp--preset--color--base, #fff);
+	border-bottom: 1px solid var(--wp--preset--color--hairline, #d9d3c7);
+}
+
+.rcobeca-past-balls__jump ul {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.25rem 1.75rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.rcobeca-past-balls__jump a {
+	font-family: var(--wp--preset--font-family--serif, Georgia, serif);
+	font-size: 1.25rem;
+	color: var(--wp--preset--color--primary, #1a3b85);
+	text-decoration: none;
+}
+
+.rcobeca-past-balls__jump a:hover {
+	text-decoration: underline;
+}
+
+.rcobeca-past-balls__decade {
+	scroll-margin-top: calc(var(--wp--custom--header-height, 84px) + 4.5rem);
+	margin-top: var(--wp--preset--spacing--50, 3rem);
+}
+
+.rcobeca-past-balls__decade-heading {
+	margin: 0;
+	padding-bottom: var(--wp--preset--spacing--20, 1rem);
+	border-bottom: 1px solid var(--wp--preset--color--contrast, #15181e);
+	font-size: var(--wp--preset--font-size--xx-large, 3rem);
+}
+
+.rcobeca-past-ball {
+	scroll-margin-top: calc(var(--wp--custom--header-height, 84px) + 4.5rem);
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 0.25rem 2rem;
+	padding-block: var(--wp--preset--spacing--40, 2rem);
+	border-bottom: 1px solid var(--wp--preset--color--hairline, #d9d3c7);
+}
+
+.rcobeca-past-ball:target {
+	background: linear-gradient(90deg, var(--wp--preset--color--cream, #f6f1e7), transparent);
+}
+
+.rcobeca-past-ball p,
+.rcobeca-past-ball h3,
+.rcobeca-past-ball dl {
+	margin: 0;
+}
+
+.rcobeca-past-ball__year {
+	font-family: var(--wp--preset--font-family--serif, Georgia, serif);
+	font-size: clamp(2.5rem, 2rem + 2vw, 3.5rem);
+	line-height: 1;
+	letter-spacing: -0.02em;
+	color: var(--wp--preset--color--primary, #1a3b85);
+}
+
+.rcobeca-past-ball__kicker {
+	font-family: var(--wp--preset--font-family--serif, Georgia, serif);
+	font-style: italic;
+	color: var(--wp--preset--color--accent-deep, #7f5f18);
+}
+
+.rcobeca-past-ball__title {
+	margin-top: 0.15rem !important;
+	font-size: 1.5rem;
+	line-height: 1.2;
+}
+
+.rcobeca-past-ball__title a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.rcobeca-past-ball__title a:hover {
+	color: var(--wp--preset--color--primary, #1a3b85);
+	text-decoration: underline;
+}
+
+.rcobeca-past-ball__when {
+	margin-top: 0.35rem !important;
+	color: var(--wp--preset--color--muted, #565c68);
+}
+
+.rcobeca-past-ball__facts {
+	margin-top: 0.85rem !important;
+	font-size: 0.9375rem;
+	line-height: 1.5;
+}
+
+.rcobeca-past-ball__facts > div {
+	display: grid;
+	grid-template-columns: 7rem minmax(0, 1fr);
+	gap: 1rem;
+	padding-block: 0.2rem;
+}
+
+.rcobeca-past-ball__facts dt {
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--accent-deep, #7f5f18);
+	padding-top: 0.15rem;
+}
+
+.rcobeca-past-ball__facts dd {
+	margin: 0;
+}
+
+.rcobeca-past-ball__links {
+	margin-top: 0.75rem !important;
+	font-weight: 600;
+	font-size: 0.9375rem;
+}
+
+
+/* Most thumbnails are flyer or logo art: shown whole on a navy mount, never cropped. */
+.rcobeca-past-ball__image img {
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 4 / 3;
+	object-fit: contain;
+	padding: 0.35rem;
+	background: var(--wp--preset--color--primary-deep, #0f2252);
+	transition: opacity var(--wp--custom--transition, 150ms ease-in-out);
+}
+
+.rcobeca-past-ball__image:hover img {
+	opacity: 0.88;
+}
+
+@media (min-width: 700px) {
+	.rcobeca-past-ball {
+		grid-template-columns: 8rem minmax(0, 1fr);
+	}
+
+	.rcobeca-past-ball.has-image {
+		grid-template-columns: 8rem minmax(0, 1fr) 11rem;
+	}
+}
+
+@media (max-width: 699.98px) {
+	.rcobeca-past-ball__image {
+		display: none;
+	}
+
+	.rcobeca-past-ball__facts > div {
+		grid-template-columns: 5.5rem minmax(0, 1fr);
+		gap: 0.75rem;
+	}
+}

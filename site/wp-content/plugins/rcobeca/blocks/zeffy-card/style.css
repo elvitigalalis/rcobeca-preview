@@ -1,0 +1,118 @@
+/* Zeffy card: our frame around Zeffy's form. Uses the theme's tokens when present. */
+.rcobeca-zeffy-card {
+	box-sizing: border-box;
+	max-width: 34rem;
+	background: var(--wp--preset--color--base, #fff);
+	color: var(--wp--preset--color--contrast, #15181e);
+	border: 1px solid var(--wp--preset--color--hairline, #d9d3c7);
+	border-top: 3px solid var(--wp--preset--color--primary, #1a3b85);
+}
+
+.rcobeca-zeffy-card.alignwide {
+	max-width: var(--wp--style--global--wide-size, 1104px);
+}
+
+.rcobeca-zeffy-card__head {
+	padding: 1.5rem 1.5rem 1rem;
+}
+
+.rcobeca-zeffy-card__kicker {
+	margin: 0;
+	font-family: var(--wp--preset--font-family--serif, Georgia, serif);
+	font-style: italic;
+	font-size: 1.0625rem;
+	color: var(--wp--preset--color--accent-deep, #7f5f18);
+}
+
+.rcobeca-zeffy-card__heading {
+	margin: 0.25rem 0 0;
+	font-size: var(--wp--preset--font-size--x-large, 1.875rem);
+}
+
+.rcobeca-zeffy-card__frame {
+	border-block: 1px solid var(--wp--preset--color--hairline, #d9d3c7);
+	background: var(--wp--preset--color--cream, #f6f1e7); /* behind the form while it loads */
+}
+
+.rcobeca-zeffy-card__frame iframe {
+	display: block;
+	width: 100%;
+	height: var(--rcobeca-zeffy-height, 1150px);
+	border: 0;
+}
+
+/* No form yet: a link out to the organisation's Zeffy page. */
+.rcobeca-zeffy-card__link {
+	padding: 1.25rem 1.5rem 1.5rem;
+	border-block: 1px solid var(--wp--preset--color--hairline, #d9d3c7);
+}
+
+.rcobeca-zeffy-card__link p {
+	margin: 0 0 1rem;
+}
+
+/* No form link yet: the offline ways to pay, in the card's own style. */
+.rcobeca-zeffy-card__ways {
+	margin: 0 0 1.25rem;
+	padding-left: 1.1rem;
+	line-height: 1.5;
+}
+
+.rcobeca-zeffy-card__ways li + li {
+	margin-top: 0.4rem;
+}
+
+/* The setup note, for people who can change settings only. */
+.rcobeca-zeffy-card__link .rcobeca-zeffy-card__setup {
+	margin-bottom: 1.25rem;
+	padding: 0.75rem 1rem;
+	border-left: 3px solid var(--wp--preset--color--accent, #c8a04a);
+	background: var(--wp--preset--color--cream, #f6f1e7);
+	font-size: 0.875rem;
+	line-height: 1.5;
+}
+
+.rcobeca-zeffy-card__trust {
+	padding: 1.25rem 1.5rem 1.5rem;
+	font-size: 0.875rem;
+	line-height: 1.5;
+	color: var(--wp--preset--color--muted, #565c68);
+}
+
+.rcobeca-zeffy-card__trust p {
+	margin: 0;
+}
+
+.rcobeca-zeffy-card__trust strong {
+	color: var(--wp--preset--color--contrast, #15181e);
+}
+
+.rcobeca-zeffy-card__trust ul {
+	margin: 0.75rem 0;
+	padding: 0;
+	list-style: none;
+}
+
+.rcobeca-zeffy-card__trust li {
+	position: relative;
+	padding: 0.2rem 0 0.2rem 1.4rem;
+}
+
+.rcobeca-zeffy-card__trust li::before {
+	content: "";
+	position: absolute;
+	left: 0.15rem;
+	top: 0.55rem;
+	width: 0.55rem;
+	height: 0.3rem;
+	border-left: 2px solid var(--wp--preset--color--primary, #1a3b85);
+	border-bottom: 2px solid var(--wp--preset--color--primary, #1a3b85);
+	transform: rotate(-45deg);
+}
+
+@media (max-width: 599.98px) {
+	.rcobeca-zeffy-card__head,
+	.rcobeca-zeffy-card__trust {
+		padding-inline: 1rem;
+	}
+}

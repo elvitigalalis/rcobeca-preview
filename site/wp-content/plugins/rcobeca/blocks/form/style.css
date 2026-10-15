@@ -1,0 +1,193 @@
+/* RCOBECA forms: square fields, hairlines, one clear error colour. Uses the theme's tokens when present. */
+.rcobeca-form {
+	--rcobeca-form-error: #b3261e;
+	max-width: 40rem;
+}
+
+.rcobeca-form__form > * + * {
+	margin-block-start: 1.5rem;
+}
+
+.rcobeca-form__note {
+	margin: 0;
+	font-size: var(--wp--preset--font-size--small, 0.9375rem);
+	color: var(--wp--preset--color--muted, #565c68);
+}
+
+.rcobeca-form__field {
+	margin-inline: 0;
+	padding: 0;
+	border: 0;
+}
+
+.rcobeca-form__field > label:not(.rcobeca-form__choice),
+.rcobeca-form__field > legend {
+	display: block;
+	padding: 0;
+	font-weight: 600;
+	line-height: 1.35;
+}
+
+.rcobeca-form__hint {
+	margin: 0.25rem 0 0;
+	font-size: var(--wp--preset--font-size--small, 0.9375rem);
+	color: var(--wp--preset--color--muted, #565c68);
+}
+
+.rcobeca-form__field input:where([type="text"], [type="email"], [type="tel"]),
+.rcobeca-form__field select,
+.rcobeca-form__field textarea {
+	box-sizing: border-box;
+	display: block;
+	width: 100%;
+	min-height: 3rem;
+	margin-top: 0.5rem;
+	padding: 0.6rem 0.8rem;
+	border: 1px solid var(--wp--preset--color--muted, #565c68);
+	border-radius: var(--wp--custom--radius, 2px);
+	background: var(--wp--preset--color--base, #fff);
+	color: var(--wp--preset--color--contrast, #15181e);
+	font: inherit;
+	line-height: 1.5;
+}
+
+.rcobeca-form__field input[inputmode="numeric"] {
+	max-width: 8rem;
+}
+
+.rcobeca-form__field select {
+	appearance: none;
+	padding-right: 2.5rem;
+	background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
+	background-position: calc(100% - 1.15rem) 50%, calc(100% - 0.8rem) 50%;
+	background-size: 0.35rem 0.35rem;
+	background-repeat: no-repeat;
+}
+
+.rcobeca-form__field textarea {
+	resize: vertical;
+}
+
+.rcobeca-form input:focus-visible,
+.rcobeca-form select:focus-visible,
+.rcobeca-form textarea:focus-visible,
+.rcobeca-form button:focus-visible,
+.rcobeca-form__summary:focus-visible,
+.rcobeca-form__thanks:focus-visible {
+	outline: 3px solid var(--wp--preset--color--accent, #c9a54a);
+	outline-offset: 2px;
+}
+
+/* Choices: an 18px square box with a hairline border, then a plain label. */
+.rcobeca-form__choice {
+	display: flex;
+	gap: 8px;
+	align-items: flex-start;
+	margin-top: 0.6rem;
+	font-weight: 400;
+	line-height: 1.4;
+	cursor: pointer;
+}
+
+.rcobeca-form__choice input {
+	flex-shrink: 0;
+	box-sizing: border-box;
+	width: 18px;
+	height: 18px;
+	margin: 0.15em 0 0;
+	border: 1px solid var(--wp--preset--color--muted, #565c68);
+	border-radius: var(--wp--custom--radius, 2px);
+	background: var(--wp--preset--color--base, #fff) center / 12px 12px no-repeat;
+	appearance: none;
+	accent-color: var(--wp--preset--color--primary, #1a3b85);
+	cursor: pointer;
+}
+
+.rcobeca-form__choice input:checked {
+	border-color: var(--wp--preset--color--primary, #1a3b85);
+	background-color: var(--wp--preset--color--primary, #1a3b85);
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6.2 4.8 9 10 3' fill='none' stroke='%23fff' stroke-width='1.8'/%3E%3C/svg%3E");
+}
+
+.rcobeca-form__choice:hover input:not(:checked) {
+	border-color: var(--wp--preset--color--primary, #1a3b85);
+}
+
+.rcobeca-form__field--checkbox .rcobeca-form__choice {
+	margin-top: 0;
+}
+
+/* Errors: a rule down the left of the field, the message above the input. */
+.rcobeca-form__field.has-error {
+	padding-left: 1rem;
+	border-left: 4px solid var(--rcobeca-form-error);
+}
+
+.rcobeca-form__error {
+	margin: 0.35rem 0 0;
+	font-weight: 600;
+	color: var(--rcobeca-form-error);
+}
+
+.rcobeca-form__field.has-error :where(input, select, textarea) {
+	border: 2px solid var(--rcobeca-form-error);
+}
+
+.rcobeca-form__summary {
+	margin-bottom: 2rem;
+	padding: 1.25rem 1.5rem;
+	border: 3px solid var(--rcobeca-form-error);
+}
+
+.rcobeca-form__summary h2,
+.rcobeca-form__thanks h2 {
+	margin: 0 0 0.5rem;
+	font-size: var(--wp--preset--font-size--x-large, 1.75rem);
+}
+
+.rcobeca-form__summary ul {
+	margin: 0;
+	padding-left: 1.2rem;
+}
+
+.rcobeca-form__summary a {
+	color: var(--rcobeca-form-error);
+	font-weight: 600;
+}
+
+.rcobeca-form__thanks {
+	padding: 1.5rem 1.75rem;
+	background: var(--wp--preset--color--cream, #f6f1e7);
+	border-top: 3px solid var(--wp--preset--color--primary, #1a3b85);
+}
+
+.rcobeca-form__thanks p {
+	margin: 0;
+}
+
+.rcobeca-form__thanks .rcobeca-form__again {
+	margin-top: 1rem;
+	font-weight: 600;
+}
+
+/* The honeypot: present for bots, never seen or reached by people. */
+.rcobeca-form__trap {
+	position: absolute;
+	left: -10000px;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+}
+
+.rcobeca-form__actions {
+	margin-block-start: 2rem !important;
+}
+
+.rcobeca-form .screen-reader-text {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}

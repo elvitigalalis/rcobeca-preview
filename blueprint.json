@@ -1,0 +1,77 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"meta": {
+		"title": "RCOBECA preview",
+		"description": "The new rcobeca.org: RCOBECA theme and plugin, with the whole site imported from the old one. Souvenir Journal PDFs are left out and photos are reduced to 1280 px.",
+		"author": "RCOBECA"
+	},
+	"landingPage": "/",
+	"preferredVersions": {
+		"php": "8.3",
+		"wp": "latest"
+	},
+	"steps": [
+		{
+			"step": "defineWpConfigConsts",
+			"consts": {
+				"RCOBECA_WEBP_SIZES": false
+			}
+		},
+		{
+			"step": "installTheme",
+			"themeData": {
+				"resource": "bundled",
+				"path": "/rcobeca-theme.zip"
+			},
+			"options": {
+				"activate": true
+			}
+		},
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "bundled",
+				"path": "/rcobeca-plugin.zip"
+			},
+			"options": {
+				"activate": true
+			}
+		},
+		{
+			"step": "wp-cli",
+			"command": "wp post create --post_type=page --post_name=style-guide --post_title='Style guide' --post_status=publish"
+		},
+		{
+			"step": "unzip",
+			"zipFile": {
+				"resource": "bundled",
+				"path": "/rcobeca-content.zip"
+			},
+			"extractToPath": "/wordpress/wp-content"
+		},
+		{
+			"step": "unzip",
+			"zipFile": {
+				"resource": "bundled",
+				"path": "/rcobeca-media-1.zip"
+			},
+			"extractToPath": "/wordpress/wp-content"
+		},
+		{
+			"step": "unzip",
+			"zipFile": {
+				"resource": "bundled",
+				"path": "/rcobeca-media-2.zip"
+			},
+			"extractToPath": "/wordpress/wp-content"
+		},
+		{
+			"step": "wp-cli",
+			"command": "wp option update rcobeca_announcement --format=json '{\"enabled\":true,\"text\":\"This is a preview of the new rcobeca.org, running only in your browser: nothing you change reaches a real site. Souvenir Journal PDFs are left out and photos are smaller.\",\"link\":\"/wp-admin/\",\"link_label\":\"Try the editor (admin / password)\"}'"
+		},
+		{
+			"step": "wp-cli",
+			"command": "wp rcobeca import --offline"
+		}
+	]
+}
